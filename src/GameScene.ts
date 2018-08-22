@@ -36,8 +36,8 @@ export default class GameScene extends TimesteppedScene {
 	preload() {
 		this.game.load.image('player', 'assets/player.png');
 
-		this.game.load.tilemap('map', 'assets/json/super_mario.json',null, Phaser.Tilemap.TILED_JSON); // タイルマップのjsonファイル
-  		this.game.load.image('tiles', 'assets/super_mario.png');  // タイルセット画像ファイル
+		this.game.load.tilemap('map', 'assets/json/mapTest001B.json',null, Phaser.Tilemap.TILED_JSON); // タイルマップのjsonファイル
+  		this.game.load.image('tiles', 'assets/exptest01.png');  // タイルセット画像ファイル
 	}
 
 	create() {
@@ -46,9 +46,9 @@ export default class GameScene extends TimesteppedScene {
 		this.map = this.game.add.tilemap('map');  // 引数は preload でロードしたマップ名
 		//this.map.addTilesetImage('tileset', 'tiles');  // 第1引数にタイルセット名
 
-		this.map.addTilesetImage('SuperMarioBros-World1-1', 'tiles');
+		this.map.addTilesetImage('test01', 'tiles');
 		//this.layer = this.map.createLayer('ground');  // タイルマップのレイヤー名
-		this.layer = this.map.createLayer('World1');
+		this.layer = this.map.createLayer('ground');
 		this.layer.resizeWorld();
 
 		this.player = this.game.add.sprite(this.playerPosition.x , this.playerPosition.y, 'player');
