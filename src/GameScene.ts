@@ -54,10 +54,8 @@ export default class GameScene extends TimesteppedScene {
 
 	fixedUpdate(dt: number) {
 
-		//プレイヤーの移動操作
+		//詳細はサマリを見てください
 		this.playerOperation();
-
-		//キャラクター移動範囲制御
 		this.limitedPlayerMoveArea();
 
 		//キャラ座標とカメラ座標からキャラの描画先を決める
@@ -67,6 +65,10 @@ export default class GameScene extends TimesteppedScene {
 		this.game.camera.x+=this.scrollSpeed;
 	}
 
+	/**
+	 * プレイヤーの移動操作
+	 * キーの入力による座標移動や、攻撃など遊び手がplayerに対して介入する物を書く
+	 */
 	playerOperation(){
 		if (this.cursors.left.isDown)
 		{
@@ -95,6 +97,10 @@ export default class GameScene extends TimesteppedScene {
 		}
 	}
 
+	/**
+	 * キャラクター移動範囲制御
+	 * キャラクターが描画範囲外に出ないように座標を丸めるメソッド
+	 */
 	limitedPlayerMoveArea() {
 
 		if (this.playerPosition.x < 0+(this.player.width/2)){
