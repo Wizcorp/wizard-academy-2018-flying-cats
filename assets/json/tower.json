@@ -1,0 +1,13 @@
+{ "columns":20,
+ "image":"..\/chip16a_tower.png",
+ "imageheight":256,
+ "imagewidth":480,
+ "margin":0,
+ "name":"tileset",
+ "spacing":0,
+ "tilecount":200,
+ "tileheight":24,
+ "tilewidth":24,
+ "transparentcolor":"#c1a5c8",
+ "type":"tileset"
+}

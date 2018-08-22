@@ -28,10 +28,12 @@ export default class TitleScene extends TimesteppedScene {
 	 * Ran every frame (this.fixedDt).
 	 */
 	fixedUpdate(dt: number) {
+		this.buttonOnClick();
 		// Skip to next scene with space or return
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER) || this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 			this.buttonOnClick();
-		}
+	}
+
 }
 
 	/**
