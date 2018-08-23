@@ -1,4 +1,5 @@
 import TimesteppedScene from "./base/TimesteppedScene";
+import { Enemies } from "./EnemiesScene";
 
 type Vector2 = { x: number, y: number };
 //ベクトルを足す
@@ -64,6 +65,8 @@ export default class GameScene extends TimesteppedScene {
 		this.player.y = this.playerPosition.y;
 
 		this.game.camera.x+=this.scrollSpeed;
+
+		Enemies.UpDate();
 	}
 
 	/**
