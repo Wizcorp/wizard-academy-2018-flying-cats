@@ -1,10 +1,24 @@
 export class EnemiesManager {
+    private :number;
     /*
     constructor() {
         this.enemies = [];
     }*/
+	init(){
+        
+	}
+
+	preload() {
+        
+	}
+
+	create() {
+
+    }
 
 	public update() {
+        //this.time = 0;
+        
         //throw new Error("Method not implemented.");
         //console.log("UpDate Enemies");
         /*
@@ -12,8 +26,9 @@ export class EnemiesManager {
 			enemy.update();
 		}*/
 	}
-/*
-	addEnemy() {
-		this.enemies.push(new EnemyDogClass(20, 10));
-	}*/
+    
+    addEnemy() {
+        //this.enemies
+		//this.enemies.push(new EnemyDogClass(20, 10));
+	}
 }

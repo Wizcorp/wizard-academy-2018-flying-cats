@@ -32,6 +32,9 @@ export default class GameScene extends TimesteppedScene {
 		this.cursors= this.game.input.keyboard.createCursorKeys();
 
 		this.playerPosition ={x:this.game.width / 2 ,y: this.game.height / 2+30};
+
+		this.enemiesManager = new EnemiesManager();
+		this.enemiesManager.init();//敵
 	}
 
 	preload() {
@@ -39,6 +42,9 @@ export default class GameScene extends TimesteppedScene {
 
 		this.game.load.tilemap('map', 'assets/json/mapTest001B.json',null, Phaser.Tilemap.TILED_JSON); // タイルマップのjsonファイル
   		this.game.load.image('tiles', 'assets/exptest01.png');  // タイルセット画像ファイル
+	
+		
+		this.enemiesManager.preload();//敵
 	}
 
 	create() {
@@ -54,7 +60,7 @@ export default class GameScene extends TimesteppedScene {
 		this.player.anchor.set(0.5, 0.5);
 		this.player.scale.set(2, 2);
 
-		this.enemiesManager = new EnemiesManager();
+		this.enemiesManager.create();//敵
 	}
 
 	fixedUpdate(dt: number) {
