@@ -34,13 +34,14 @@ export default class GameScene extends TimesteppedScene {
 
 	preload() {
 		this.game.load.image('player', 'assets/player.png');
-		this.game.load.tilemap('map', 'assets/json/super_mario.json',null, Phaser.Tilemap.TILED_JSON);
-  		this.game.load.image('tiles', 'assets/super_mario.png');
+
+		this.game.load.tilemap('map', 'assets/json/mapTest001B.json',null, Phaser.Tilemap.TILED_JSON); // タイルマップのjsonファイル
+  		this.game.load.image('tiles', 'assets/exptest01.png');  // タイルセット画像ファイル
 	}
 
 	create() {
 		//this.game.stage.backgroundColor = '#787878';
-
+		
 		this.map = this.game.add.tilemap('map');
 		this.map.addTilesetImage('test01', 'tiles');
 		this.layer = this.map.createLayer('ground');
