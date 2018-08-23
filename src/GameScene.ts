@@ -1,16 +1,7 @@
 import TimesteppedScene from "./base/TimesteppedScene";
 import { EnemiesManager } from "./GameObject/EnemiesManager";
+import {Vector2,multVectors,addVectors}  from "./base/Mass";
 
-type Vector2 = { x: number, y: number };
-//ベクトルを足す
-function addVectors(a: Vector2, b: Vector2): Vector2 {
-	return { x: a.x + b.x, y: a.y + b.y };
-}
-
-//ベクトルをかける
-function multVector(a: Vector2, s: number): Vector2 {
-	return { x: a.x * s, y: a.y * s };
-}
 export default class GameScene extends TimesteppedScene {
 	private player: Phaser.Sprite;
 	private map: Phaser.Tilemap;
