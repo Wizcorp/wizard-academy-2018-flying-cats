@@ -26,6 +26,7 @@ export class PlayerClass {
     }  
 
     createPlayer(){
+        
         this.mySprite = this.game.add.sprite(this.playerPosition.x , this.playerPosition.y, 'playerSprite');
         this.mySprite.smoothed = false;
 		this.mySprite.anchor.set(0.5, 0.5);
