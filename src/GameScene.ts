@@ -66,7 +66,7 @@ export default class GameScene extends TimesteppedScene {
 
 		this.game.camera.x+=this.scrollSpeed;
 
-		Enemies.UpDate();
+		Enemies.UpDate();//敵の更新
 	}
 
 	/**
