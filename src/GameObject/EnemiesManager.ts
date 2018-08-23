@@ -1,11 +1,15 @@
+import { EnemieBace } from "./EnemieBace";
+
 export class EnemiesManager {
-    private :number;
+	private time:number;
+	private enemies:EnemieBace;
+	private enemiesBace: EnemieBace;
     /*
     constructor() {
         this.enemies = [];
     }*/
 	init(){
-        
+        //this.enemies
 	}
 
 	preload() {
@@ -13,17 +17,18 @@ export class EnemiesManager {
 	}
 
 	create() {
-
+        //this.enemies = new enemiesBace[1];
     }
 
-	public update() {
+	public update(/*dt: number*/) {
         //this.time = 0;
         
         //throw new Error("Method not implemented.");
         //console.log("UpDate Enemies");
         /*
-        foreach (enemy in this.enemies) {
-			enemy.update();
+        this.enemies.forEach (this.enemiesBace in this.enemies) {
+            this.enemiesBace.update();
+            console.log("UpDate Enemies");
 		}*/
 	}
     
