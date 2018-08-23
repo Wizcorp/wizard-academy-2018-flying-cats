@@ -1,5 +1,5 @@
 import TimesteppedScene from "./base/TimesteppedScene";
-import { Enemies } from "./EnemiesScene";
+import { Enemies } from "./GameObject/Enemies";
 
 type Vector2 = { x: number, y: number };
 //ベクトルを足す
