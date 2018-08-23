@@ -1,15 +1,6 @@
 export class Enemies {
 
-	static UpDate(): any {
-        //throw new Error("Method not implemented.");
-        console.log("UpDate Enemies");
+	public update() {
+        //a
 	}
-    /*
-    UpDate(){
-        console.log("UpDate Enemies");
-    }*/
-
-    enemiesAction(){
-
-    }
 }

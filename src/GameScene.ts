@@ -1,5 +1,5 @@
 import TimesteppedScene from "./base/TimesteppedScene";
-import { Enemies } from "./GameObject/Enemies";
+import { EnemiesManager } from "./GameObject/EnemiesManager";
 
 type Vector2 = { x: number, y: number };
 //ベクトルを足す
@@ -22,6 +22,7 @@ export default class GameScene extends TimesteppedScene {
 	private scrollSpeed:number;
 
 	private playerPosition:Vector2;
+	private enemiesManager: EnemiesManager;
 
 	init(){
 		this.moveSpeed=20;
@@ -52,6 +53,8 @@ export default class GameScene extends TimesteppedScene {
 		this.player.smoothed = false;
 		this.player.anchor.set(0.5, 0.5);
 		this.player.scale.set(2, 2);
+
+		this.enemiesManager = new EnemiesManager();
 	}
 
 	fixedUpdate(dt: number) {
@@ -66,7 +69,7 @@ export default class GameScene extends TimesteppedScene {
 
 		this.game.camera.x+=this.scrollSpeed;
 
-		Enemies.UpDate();//敵の更新
+		this.enemiesManager.update();//敵の更新
 	}
 
 	/**
