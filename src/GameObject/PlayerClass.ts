@@ -36,7 +36,10 @@ export class PlayerClass {
 
 		this.playerPosition = { x: this.game.width / 2, y: this.game.height / 2 + 30 };
 
-		//console.log("createPlayer DONE");
+		const catAnimationSpeed:number=6;
+		this.mySprite.animations.add('wait', [0, 1, 2, 3], catAnimationSpeed, true);
+		this.mySprite.animations.play('wait');
+
 	}
 
 	update() {
