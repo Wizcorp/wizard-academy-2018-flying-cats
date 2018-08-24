@@ -5,7 +5,7 @@ export class EnemiesBase{
     private sprite:Phaser.Sprite;
     private life:number;
     private Pos:Vector2;
-    private EnemieMode:number;
+    private mode:number;
     private game: Game;
 
     constructor(game: Game,){
@@ -26,5 +26,21 @@ export class EnemiesBase{
 
         //this.EnemieMode = EM;
         //this.life = life;
+    }
+
+    getLife(){
+        return this.life;
+    }
+
+    getPos(){
+        return this.Pos;
+    }
+
+    getSprite(){
+        return this.sprite;
+    }
+
+    getMode(){
+        return this.mode;
     }
 }
