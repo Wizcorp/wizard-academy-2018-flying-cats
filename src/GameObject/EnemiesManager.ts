@@ -1,13 +1,19 @@
+
+import {  Sprite, Game } from "phaser-ce";
 import { EnemiesBase } from "./EnemiesBase";
 
 export class EnemiesManager {
 	private time:number;
-	private enemies:EnemiesBase;
-	private enemiesBace: EnemiesBase;
-    /*
-    constructor() {
-        this.enemies = [];
-    }*/
+	private enemies: EnemiesBase[] = [];
+    //private enemiesBace: EnemiesBase;
+
+	private game: Game;
+    
+	constructor(game: Game) {
+
+        this.game = game;
+	}
+
 	init(){
         //this.enemies
 	}
@@ -17,23 +23,18 @@ export class EnemiesManager {
 	}
 
 	create() {
-        //this.enemies = new enemiesBace[1];
+        this.addEnemy();
     }
 
 	public update(/*dt: number*/) {
-        //this.time = 0;
-        
-        //throw new Error("Method not implemented.");
-        //console.log("UpDate Enemies");
-        /*
-        this.enemies.forEach (this.enemiesBace in this.enemies) {
-            this.enemiesBace.update();
-            console.log("UpDate Enemies");
-		}*/
+        for (let i = 0; i < this.enemies.length; i++) {
+            let enemy = this.enemies[i];
+            enemy.update();
+        }
 	}
     
     addEnemy() {
-        //this.enemies
-		//this.enemies.push(new EnemyDogClass(20, 10));
+        this.enemies.push(new EnemiesBase(this.game));
+        this.enemies[this.enemies.length - 1].start('enemyA');
 	}
 }
