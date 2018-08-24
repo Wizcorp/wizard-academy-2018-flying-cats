@@ -17,15 +17,6 @@ export class EnemiesBase{
     }
 
     start(spriteName: string = `enemyA` , PosX: number = this.game.width, PosY: number = this.game.height / 2){
-        /*
-        switch(EM){
-            case 1:
-                this.spriteName = `enemyA`;
-                break;
-            case 2:
-                this.spriteName = `enemyB`;
-                break;
-        }*/
         this.sprite = this.game.add.sprite(PosX, PosY, spriteName);
         
         

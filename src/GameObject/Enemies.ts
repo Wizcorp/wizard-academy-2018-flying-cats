@@ -1,6 +1,10 @@
-export class Enemies {
+export class EnemiesCan {
 
-	public update() {
-        //a
+	update() {
+        //毎フレーム呼ばれる
+	}
+
+	data(){
+		
 	}
 }

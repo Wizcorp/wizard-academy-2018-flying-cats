@@ -24,6 +24,10 @@ export class EnemiesManager {
 
 	create() {
         this.addEnemy();
+        this.addEnemy(1);
+        this.addEnemy(2);
+        this.addEnemy(3);
+        this.addEnemy(4);
     }
 
 	public update(/*dt: number*/) {
@@ -33,8 +37,26 @@ export class EnemiesManager {
         }
 	}
     
-    addEnemy() {
-        this.enemies.push(new EnemiesBase(this.game));
-        this.enemies[this.enemies.length - 1].start('enemyA');
+    addEnemy(mode:number = 0) {
+		this.enemies.push(new EnemiesBase(this.game));
+		let spriteName: string = "enemyA";
+        switch(mode){
+            case 1:
+				spriteName = "enemyA";
+                break;
+            case 2:
+				spriteName = "enemyB";
+				break;
+			case 3:
+				spriteName = "enemyC";
+				break;
+			case 4:
+				spriteName = "enemyD";
+				break;
+			default:
+				spriteName = "enemyA";
+				break;
+        }
+        this.enemies[this.enemies.length - 1].start(spriteName,this.enemies.length*this.game.width/2);
 	}
 }
