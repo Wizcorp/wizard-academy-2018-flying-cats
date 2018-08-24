@@ -59,4 +59,8 @@ export class EnemiesManager {
         }
         this.enemies[this.enemies.length - 1].start(spriteName,this.enemies.length*this.game.width/2);
 	}
+
+	getEnemies(){
+		return this.enemies;
+	}
 }
