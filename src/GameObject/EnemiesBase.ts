@@ -5,7 +5,7 @@ export class EnemiesBase{
     private sprite:Phaser.Sprite;
     private life:number;
     private Pos:Vector2;
-    private mode:number;
+    private MoveMode:number;
     private game: Game;
 
     constructor(game: Game,){
@@ -13,19 +13,17 @@ export class EnemiesBase{
     }
 
     update(){
-        console.log("update");
+        
     }
 
-    start(spriteName: string = `enemyA` , PosX: number = this.game.width, PosY: number = this.game.height / 2){
-        this.sprite = this.game.add.sprite(PosX, PosY, spriteName);
+    start(spriteName: string , PositionX: number = this.game.width, PositionY: number = this.game.height / 2){
+        this.Pos = {x:PositionX,y:PositionY}
+        this.sprite = this.game.add.sprite(this.Pos.x, this.Pos.y, spriteName);
         
         
         this.sprite.smoothed = false;
 		this.sprite.anchor.set(0.5, 0.5);
 		this.sprite.scale.set(2, 2);
-
-        //this.EnemieMode = EM;
-        //this.life = life;
     }
 
     getLife(){
@@ -40,7 +38,19 @@ export class EnemiesBase{
         return this.sprite;
     }
 
-    getMode(){
-        return this.mode;
+    getMoveMode(){
+        return this.MoveMode;
+    }
+
+    setLife(LIFE: number){
+        this.life = LIFE;
+    }
+
+    setMoveMode(MODE: number){
+        this.MoveMode = MODE;
+    }
+
+    setPos(position:Vector2){
+        this.Pos = position;
     }
 }

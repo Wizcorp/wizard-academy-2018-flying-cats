@@ -103,5 +103,9 @@ export class PlayerClass {
 			this.playerPosition.y = bottomBoundary;
 		}
 	}
+
+	getPlayerPosition(){//高見16：25
+		return this.playerPosition;
+	}
 }
 
