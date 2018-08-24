@@ -1,9 +1,9 @@
-import { EnemieBace } from "./EnemieBace";
+import { EnemiesBase } from "./EnemiesBase";
 
 export class EnemiesManager {
 	private time:number;
-	private enemies:EnemieBace;
-	private enemiesBace: EnemieBace;
+	private enemies:EnemiesBase;
+	private enemiesBace: EnemiesBase;
     /*
     constructor() {
         this.enemies = [];
