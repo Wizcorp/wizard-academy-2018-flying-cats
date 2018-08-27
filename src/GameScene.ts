@@ -12,7 +12,8 @@ export default class GameScene extends TimesteppedScene {
 	private playerObject: PlayerClass;
 	private tilesetObject: BgClass;
 
-	private enemyA: Phaser.Sprite;//TAKA
+	private enemyA: Phaser.Sprite;
+	private platforms: Phaser.Group;//当たり判定後でタイル度にいれる
 	
 	init(){
 		this.scrollSpeed=3;
@@ -42,8 +43,12 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.spritesheet('playerSprite', 'assets/playerA.png', 50, 50);
 	}
 
-	create() {
-		//this.game.stage.backgroundColor = '#787878';
+	create() {//高見17：02当たり判定
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+
+
+
 		this.tilesetObject.createTileset();
 	
 		this.enemiesManager.create();//敵
@@ -56,6 +61,10 @@ export default class GameScene extends TimesteppedScene {
 		};
 
 		this.game.canvas.addEventListener('mousedown', onMouseDown);
+		
+
+		this.game.physics.arcade.enable([this.playerObject.mySprite, this.enemiesManager.enemies[0]]);
+
 
 	}
 

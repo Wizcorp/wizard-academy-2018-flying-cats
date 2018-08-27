@@ -11,7 +11,7 @@ import { PlayerClass } from "./PlayerClass";
 
 import ITiledObject from "./ITiledObject";
 export class EnemiesManager {
-	private enemies: EnemiesBase[] = [];
+	public enemies: EnemiesBase[] = [];
 	
 	private Can: EnemiesCan;
 	private Pudding: EnemiesPudding;
@@ -45,7 +45,7 @@ export class EnemiesManager {
 		const map = this.game.add.tilemap('map');
 		//Read the objects
 		const objectList = this.getObjectLayer(map,'enemy ');
-		for(const object of objectList){
+		/*for(const object of objectList){
 			let mode = 0;
 			switch(object.name){
 				case "can":
@@ -65,11 +65,15 @@ export class EnemiesManager {
 					break
 			}
 			this.addEnemy(mode,object.x,object.y);
-		}
+		}*/
+		
+		this.addEnemy(1,100,100);
     }
 
-	public update(/*dt: number*/) {/*
+	public update(/*dt: number*/) {
         for (let i = 0; i < this.enemies.length; i++) {
+			this.enemies[i].update();
+			/*
             let enemy = this.enemies[i];
 			enemy.update();
 			switch(enemy.getMoveMode()){
@@ -88,8 +92,8 @@ export class EnemiesManager {
 				case 4:
 					enemy.setPos(this.Shark.posUpdate(enemy.getPos(),this.player.getPlayerPosition(),this.game));
 					break;
-			}
-        }*/
+			}*/
+		}
 	}
     
     addEnemy(mode:number = 0,x:number,y:number) {

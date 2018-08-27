@@ -16,7 +16,18 @@ export class EnemiesBase{
     }
 
     update(){
-        
+        //console.log('player pos', this.player.getPlayerPosition())
+        console.log(this.game.physics.arcade.overlap(this.player.mySprite, this.sprite,this.addDamage,null,this ))
+
+        // console.log(this.player.mySprite.getBounds())
+        // console.log(this.sprite.getBounds())
+        console.log('enemy',this.sprite.getBounds())
+        console.log('player', this.player.mySprite.getBounds())
+
+
+        if(this.game.physics.arcade.overlap(this.player.mySprite, this.sprite,this.addDamage,null,this )){
+            this.addDamage();
+        }
     }
 
     start(spriteName: string , PositionX: number = this.game.width, PositionY: number = this.game.height / 2){
@@ -26,7 +37,13 @@ export class EnemiesBase{
         
         this.sprite.smoothed = false;
 		this.sprite.anchor.set(0.5, 0.5);
-		this.sprite.scale.set(2, 2);
+        this.sprite.scale.set(2, 2);
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+        this.game.physics.arcade.enable(this.player);
+
+        this.game.physics.arcade.enable(this.sprite);
+
     }
 
     getLife(){
@@ -57,5 +74,10 @@ export class EnemiesBase{
         this.Pos = position;
         this.sprite.x = this.Pos.x;
         this.sprite.y = this.Pos.y;
+    }
+
+    addDamage(/*player: Phaser.Sprite, sprite: Phaser.Sprite*/){
+        console.log('add damaged is called')
+        this.game.state.start('GameOverScene');
     }
 }
