@@ -5,6 +5,7 @@ import { EnemiesBase } from "./EnemiesBase";
 import { EnemiesCan } from "./EnemiesCan";
 import { EnemiesPudding } from "./EnemiesPudding";
 import { EnemiesShark } from "./EnemiesShark";
+import { PlayerClass } from "./PlayerClass";
 
 export class EnemiesManager {
 	private enemies: EnemiesBase[] = [];
@@ -14,9 +15,10 @@ export class EnemiesManager {
 	private Shark: EnemiesShark;
 
 	private game: Game;
+	private player: PlayerClass;
     
-	constructor(game: Game) {
-
+	constructor(game: Game,player: PlayerClass) {
+		this.player = player;
         this.game = game;
 	}
 
@@ -25,14 +27,14 @@ export class EnemiesManager {
 	}
 
 	preload() {
-        
+		
 	}
 
 	create() {
 		this.Can = new EnemiesCan();
 		this.Pudding = new EnemiesPudding();
 		this.Shark = new EnemiesShark();
-        this.addEnemy();
+        this.addEnemy(0);
         this.addEnemy(1);
         this.addEnemy(2);
         this.addEnemy(3);
@@ -51,14 +53,15 @@ export class EnemiesManager {
 					enemy.setPos(this.Pudding.posUpdate(enemy.getPos()));
 					break;
 				case 3:
-					enemy.setPos(this.Shark.posUpdate(enemy.getPos()));
+					enemy.setPos(this.Shark.posUpdate(enemy.getPos(),this.player.getPlayerPosition(),this.game));
 					break;
 			}
+
         }
 	}
     
     addEnemy(mode:number = 1) {
-		this.enemies.push(new EnemiesBase(this.game));
+		this.enemies.push(new EnemiesBase(this.game,this.player));
 		let spriteName: string = "enemyA";
         switch(mode){
 			case 1:

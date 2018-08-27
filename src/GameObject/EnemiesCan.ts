@@ -12,8 +12,8 @@ export class EnemiesCan {
 	}
 
 	posUpdate(Pos:Vector2 = {x:0,y:0}){
-		let T: Vector2 = Pos;
-		return T;
+		Pos.x += 0.5;
+		return Pos;
 	}
 
 	getSprite(){

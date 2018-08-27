@@ -1,5 +1,6 @@
 import {  Sprite, Game } from "phaser-ce";
 import { Vector2 } from "../base/Mass";
+import { PlayerClass } from "./PlayerClass";
 
 export class EnemiesBase{
     private sprite:Phaser.Sprite;
@@ -7,9 +8,11 @@ export class EnemiesBase{
     private Pos:Vector2;
     private MoveMode:number;
     private game: Game;
+	private player:PlayerClass;
 
-    constructor(game: Game,){
+    constructor(game: Game,player: PlayerClass){
         this.game = game;
+        this.player = player;
     }
 
     update(){
@@ -52,5 +55,7 @@ export class EnemiesBase{
 
     setPos(position:Vector2){
         this.Pos = position;
+        this.sprite.x = this.Pos.x;
+        this.sprite.y = this.Pos.y;
     }
 }
