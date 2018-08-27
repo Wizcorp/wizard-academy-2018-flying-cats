@@ -14,16 +14,8 @@ export default class TitleScene extends TimesteppedScene {
 	 * Ran once at initialization.
 	 */
 	create() {
-		/*
-		const title = this.game.add.text(this.game.width / 2, 200, 'Wizard Academy Space Shooter');
-		title.anchor.set(0.5, 0.5);
-		title.align = 'center';
-		title.font = 'Arial';
-		title.fontSize = 45;
-		title.fill = '#ffffff';
-		*/
 
-		const Bg = this.add.image(0,0,"startBg");
+		const Bg = this.add.image(0, 0, "startBg");
 
 		const button = this.game.add.button(this.game.width / 2, 300, 'startButton', this.buttonOnClick, this, 2, 1, 0);
 		button.anchor.set(0.5, 0.5);
@@ -44,9 +36,9 @@ export default class TitleScene extends TimesteppedScene {
 		// Skip to next scene with space or return
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER) || this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 			this.buttonOnClick();
-	}
+		}
 
-}
+	}
 
 	/**
 	 * Callback for button.
