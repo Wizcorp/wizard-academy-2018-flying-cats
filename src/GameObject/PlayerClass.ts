@@ -5,6 +5,8 @@ import { Vector2 } from "../base/Mass";
 export class PlayerClass {
 
 	public playerSprite: Phaser.Sprite;
+//	public playerSprite2: Phaser.Sprite;
+
 	private cursors: Phaser.CursorKeys;
 
 	private game: Game;
@@ -36,11 +38,13 @@ export class PlayerClass {
 
 		this.playerPosition = { x: this.game.width / 2, y: this.game.height / 2 + 30 };
 
-		const catAnimationSpeed:number=6;
+		const catAnimationSpeed: number = 6;
 		this.mySprite.animations.add('wait', [0, 1, 2, 3], catAnimationSpeed, true);
 		this.mySprite.animations.play('wait');
 
 	}
+
+
 
 	update() {
 		this.playerOperation();
@@ -104,7 +108,7 @@ export class PlayerClass {
 		}
 	}
 
-	getPlayerPosition(){//高見16：25
+	getPlayerPosition() {//高見16：25
 		return this.playerPosition;
 	}
 }

@@ -15,7 +15,7 @@ export default class GameScene extends TimesteppedScene {
 	private enemyA: Phaser.Sprite;//TAKA
 	
 	init(){
-		this.scrollSpeed=7;
+		this.scrollSpeed=3;
 
 		this.playerObject  = new PlayerClass(this.game);
 		this.tilesetObject  = new BgClass(this.game);
@@ -46,6 +46,14 @@ export default class GameScene extends TimesteppedScene {
 		this.enemiesManager.create();//敵
 
 		this.playerObject.createPlayer();
+
+		const onMouseDown = () => {
+			this.buttonOnClick();
+			this.game.canvas.removeEventListener('mousedown', onMouseDown);
+		};
+
+		this.game.canvas.addEventListener('mousedown', onMouseDown);
+
 	}
 
 	fixedUpdate(dt: number) {
@@ -55,5 +63,10 @@ export default class GameScene extends TimesteppedScene {
 		this.playerObject.update();
 		this.enemiesManager.update();//敵の更新
 	}
+
+	buttonOnClick() {
+		this.game.state.start('GameOverScene');
+	}
+
 }
 

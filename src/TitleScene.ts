@@ -27,6 +27,14 @@ export default class TitleScene extends TimesteppedScene {
 
 		const button = this.game.add.button(this.game.width / 2, 300, 'startButton', this.buttonOnClick, this, 2, 1, 0);
 		button.anchor.set(0.5, 0.5);
+
+		const onMouseDown = () => {
+			this.buttonOnClick();
+			this.game.canvas.removeEventListener('mousedown', onMouseDown);
+		};
+
+		this.game.canvas.addEventListener('mousedown', onMouseDown);
+
 	}
 
 	/**
