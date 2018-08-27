@@ -32,11 +32,8 @@ export default class GameScene extends TimesteppedScene {
 
 		this.game.load.image('enemyA', 'assets/nyan.png');//敵画像
 		this.game.load.image('enemyB', 'assets/nyan.png');
-<<<<<<< Updated upstream
 
-=======
 		this.game.load.image('enemyC', 'assets/bossenemy.png');
->>>>>>> Stashed changes
 		this.enemiesManager.preload();//敵
 
 //		this.game.load.image('playerSprite', 'assets/player.png');
