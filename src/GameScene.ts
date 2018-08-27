@@ -31,9 +31,11 @@ export default class GameScene extends TimesteppedScene {
   	this.game.load.image('tiles', 'assets/exptest01.png');  // タイルセット画像ファイル
 
 		this.game.load.image('enemyA', 'assets/nyan.png');//敵画像
-		this.game.load.image('enemyB', 'assets/nyan.png');
-
+		this.game.load.image('enemyB', 'assets/purin.png');
+		this.game.load.image('enemyD', 'assets/omurise.png');
 		this.game.load.image('enemyC', 'assets/bossenemy.png');
+		this.game.load.image('enemyE', 'assets/ebihurai.png');
+		this.game.load.image('bullet', 'assets/fork.png');
 		this.enemiesManager.preload();//敵
 
 //		this.game.load.image('playerSprite', 'assets/player.png');

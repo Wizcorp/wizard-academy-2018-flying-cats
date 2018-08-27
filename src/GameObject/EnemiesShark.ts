@@ -15,7 +15,7 @@ export class EnemiesShark {
 
 	posUpdate(Pos:Vector2 = {x:0,y:0},TarPos:Vector2 =  {x:0,y:0},game:Game){
 		Pos.y += this.fn_MMN(TarPos.y - Pos.y,-2)
-		Pos.x += this.fn_MMN(3,0,game.camera.x - Pos.x+700);
+		Pos.x += this.fn_MMN(3,0,game.camera.x - Pos.x+600);
 		return Pos;
 	}
 
@@ -31,7 +31,7 @@ export class EnemiesShark {
 		return this.moveMode;
 	}
 
-	fn_MMN(x:number,y:number,z:number =  - y){//ｘを最小ｙ、最大ｚにする
+	fn_MMN(x:number,y:number,z:number = - y){//ｘを最小ｙ、最大ｚにする
 		x = Math.max(Math.min(x,z),y);
 		return x;
 	}
