@@ -4,8 +4,8 @@ export default interface ITiledObject {
 	height: number;
 	id: number;
 	name: string;
-	properties: {[key: string]: string};
-	propertytypes: {[key: string]: string};
+	properties: { [key: string]: string };
+	propertytypes: { [key: string]: string };
 	type: string;
 	visible: boolean;
 	width: number;

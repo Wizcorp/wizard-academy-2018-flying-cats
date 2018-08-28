@@ -20,12 +20,12 @@ export class EnemiesShark extends EnemiesBase {
 		this.modeTime--;
 		if (this.modeTime < 0) {
 			this.modeTime = 300;
-			this.mode ++;
-			if (this.mode >4){
+			this.mode++;
+			if (this.mode > 4) {
 				this.mode = 0;
 			}
 		}
-		switch (this.mode){
+		switch (this.mode) {
 			default:
 				if (this.aTime < 0) {
 					this.aTime = this.mTime;
@@ -41,21 +41,21 @@ export class EnemiesShark extends EnemiesBase {
 				this.sprite.x += this.fn_MMN(3, 0, this.game.camera.x - this.sprite.x + 700);
 				break;
 			case 2:
-					this.sprite.y -= 3;
-					if (this.sprite.y < 0){
-						this.mode ++;
-					}
+				this.sprite.y -= 3;
+				if (this.sprite.y < 0) {
+					this.mode++;
+				}
 				break;
 			case 3:
-					this.sprite.y += 5;
-					if (this.sprite.y > this.game.height){
-						this.mode ++;
-					}
+				this.sprite.y += 5;
+				if (this.sprite.y > this.game.height) {
+					this.mode++;
+				}
 				break;
 			case 4:
 				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2)
 				this.sprite.x += this.fn_MMN(3, 0, this.game.camera.x - this.sprite.x + 700);
-					break;
+				break;
 		}
 	}
 

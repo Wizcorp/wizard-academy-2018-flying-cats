@@ -9,6 +9,6 @@ export class EnemiesCan extends EnemiesBase {
 	}
 
 	update() {
-		
+
 	}
 }

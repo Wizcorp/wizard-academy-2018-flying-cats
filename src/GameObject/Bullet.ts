@@ -13,7 +13,7 @@ export default class Bullet extends Phaser.Sprite {
 		this.x += this.moveSpeed;
 	}
 
-	destroy(){
+	destroy() {
 		this.kill();
 	}
 }

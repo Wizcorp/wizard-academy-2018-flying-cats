@@ -2,50 +2,50 @@ import { Game } from "phaser-ce";
 import { PlayerClass } from "./PlayerClass";
 
 export default class EnemiesBase {
-    public anable: Boolean = false;
-    public sprite: Phaser.Sprite;
-    private life: number;
-    game: Game;
-    player: PlayerClass;
+	public anable: Boolean = false;
+	public sprite: Phaser.Sprite;
+	private life: number;
+	game: Game;
+	player: PlayerClass;
 
-    constructor(game: Game, player: PlayerClass, spriteName: string, posX: number, posY: number, life: number) {
-        this.game = game;
-        this.player = player;
-        this.sprite = this.game.add.sprite(posX, posY, spriteName);
-        this.game.physics.arcade.enable(this.sprite);
-        this.sprite.smoothed = false;
-        this.sprite.anchor.set(0.5, 0.5);
-        this.sprite.scale.set(1, 1);
-        this.life = life;
-        this.anable  = false;
-    }
+	constructor(game: Game, player: PlayerClass, spriteName: string, posX: number, posY: number, life: number) {
+		this.game = game;
+		this.player = player;
+		this.sprite = this.game.add.sprite(posX, posY, spriteName);
+		this.game.physics.arcade.enable(this.sprite);
+		this.sprite.smoothed = false;
+		this.sprite.anchor.set(0.5, 0.5);
+		this.sprite.scale.set(1, 1);
+		this.life = life;
+		this.anable = false;
+	}
 
-    update() {
-        //各enemy中のupdate読む？例：EnemiesCan.update
-    }
+	update() {
+		//各enemy中のupdate読む？例：EnemiesCan.update
+	}
 
-    baceUpdate() {//todo:base
-				this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
+	baceUpdate() {//todo:base
+		this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
 
-        if(this.game.camera.x - this.sprite.x < 0){
-            this.anable = false;
-        }
-    }
+		if (this.game.camera.x - this.sprite.x < 0) {
+			this.anable = false;
+		}
+	}
 
-    fixedUpdate(dt: number) {
+	fixedUpdate(dt: number) {
 
-    }
+	}
 
-    addDamage() {
-        this.life --;
-        if (this.life <= 0) {
-            this.delete();
-				}
-				//console.log(this.player.changeLife);//よべてる
-    }
+	addDamage() {
+		this.life--;
+		if (this.life <= 0) {
+			this.delete();
+		}
+		//console.log(this.player.changeLife);//よべてる
+	}
 
-    delete() {
-        this.anable = false;
-        this.sprite.kill();
-    }
+	delete() {
+		this.anable = false;
+		this.sprite.kill();
+	}
 }

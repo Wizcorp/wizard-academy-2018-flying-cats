@@ -77,12 +77,12 @@ export default class GameScene extends TimesteppedScene {
 			this.bullets.push(bullet);
 			this.lastShotTime = new Date().getTime();
 		}
-		
+
 		//bulletの処理と当たり判定
 		for (const bullet of this.bullets) {
 			bullet.fixedUpdate();
 
-			for(const enemy of this.enemiesManager.enemies){
+			for (const enemy of this.enemiesManager.enemies) {
 				if (this.game.physics.arcade.overlap(bullet, enemy.sprite)) {
 					enemy.addDamage();
 					bullet.destroy();
