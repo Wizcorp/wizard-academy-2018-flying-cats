@@ -25,13 +25,9 @@ export default class EnemiesBase {
     }
 
     baceUpdate() {
-        if (this.anable){
-            this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.addDamage, null, this);
-            if(this.game.camera.x - this.sprite.x < 0){
-                this.anable = false;
-            }
-        }else if(this.game.camera.x - this.sprite.x + this.game.width > 0){
-            this.anable = true;
+        this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.addDamage, null, this);
+        if(this.game.camera.x - this.sprite.x < 0){
+            this.anable = false;
         }
     }
 
@@ -47,6 +43,7 @@ export default class EnemiesBase {
     }
 
     delete() {
+        this.anable = false;
         this.sprite.kill();
     }
 }

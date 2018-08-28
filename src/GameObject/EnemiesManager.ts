@@ -1,5 +1,5 @@
 
-import { Sprite, Game } from "phaser-ce";
+import { Game } from "phaser-ce";
 import EnemiesBase from "./EnemiesBase";
 import { EnemiesCan } from "./EnemiesCan";
 import { EnemiesPudding } from "./EnemiesPudding";
@@ -19,7 +19,7 @@ export class EnemiesManager {
 	}
 
 	init() {
-
+		
 	}
 
 	preload() {
@@ -58,9 +58,11 @@ export class EnemiesManager {
 
 	public update(/*dt: number*/) {
 		for (let i = 0; i < this.enemies.length; i++) {
-			this.enemies[i].baceUpdate();
 			if (this.enemies[i].anable){
+				this.enemies[i].baceUpdate();
 				this.enemies[i].update();
+			}else if(this.game.camera.x - this.enemies[i].sprite.x + this.game.width > 0){
+				this.enemies[i].anable = true;
 			}
 		}
 	}

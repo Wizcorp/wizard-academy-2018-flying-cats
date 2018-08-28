@@ -7,7 +7,7 @@ export class EnemiesPudding extends EnemiesBase {
 	private angle: number;
 
 	constructor(game: Game, player: PlayerClass, posX: number, posY: number) {
-		super(game, player, "enemyB", posX, posY, 3);
+		super(game, player, "enemyB", posX, posY, 1);
 		this.angle = Math.random()*100;
 	}
 
