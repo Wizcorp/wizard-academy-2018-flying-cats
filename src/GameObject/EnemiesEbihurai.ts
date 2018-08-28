@@ -1,30 +1,15 @@
+import EnemiesBase from "./EnemiesBase";
+import { Game } from "phaser-ce";
+import { PlayerClass } from "./PlayerClass";
 
-import { Vector2 } from "../base/Mass";
-export class EnemiesEbihurai {
-	
-	private spriteName:string;
-	private life:number;
-	private moveMode:number;
-	constructor(){
-		this.spriteName = `enemyE`;
-		this.life = 3;
-		this.moveMode = 1;
+export class EnemiesEbihurai extends EnemiesBase {
+
+	private spriteName: string;
+	constructor(game: Game, player: PlayerClass, posX: number, posY: number) {
+		super(game, player, "enemyE", posX, posY, 3);
 	}
 
-	posUpdate(Pos:Vector2 = {x:0,y:0}){
-		Pos.x += 0.5;
-		return Pos;
-	}
-
-	getSprite(){
-		return this.spriteName;
-	}
-
-	getLife(){
-		return this.life;
-	}
-
-	getMoveMode(){
-		return this.moveMode;
+	update() {
+		this.sprite.x += 0.2;
 	}
 }
