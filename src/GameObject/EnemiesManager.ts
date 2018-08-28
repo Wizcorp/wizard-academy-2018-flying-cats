@@ -45,7 +45,7 @@ export class EnemiesManager {
 		const map = this.game.add.tilemap('map');
 		//Read the objects
 		const objectList = this.getObjectLayer(map,'enemy ');
-		/*for(const object of objectList){
+		for(const object of objectList){
 			let mode = 0;
 			switch(object.name){
 				case "can":
@@ -65,9 +65,7 @@ export class EnemiesManager {
 					break
 			}
 			this.addEnemy(mode,object.x,object.y);
-		}*/
-		
-		this.addEnemy(1,100,100);
+		}
     }
 
 	public update(/*dt: number*/) {
