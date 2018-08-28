@@ -24,7 +24,7 @@ export class BgClass {
 
 	update() {
 		this.background.x = this.game.camera.x;
-		this.BackgroundScrolling(this.background, 3);
+		this.BackgroundScrolling(this.background, 2);
 	}
 
 	BackgroundScrolling(background: TileSprite, speed: number) {

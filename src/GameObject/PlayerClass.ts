@@ -81,7 +81,7 @@ export class PlayerClass {
  * キーの入力による座標移動や、攻撃など遊び手がplayerに対して介入する物を書く
  */
 	playerOperation() {
-		const moveSpeed = 20;
+		const moveSpeed: number = 7;
 
 		if (this.cursors.left.isDown) {
 			//console.log("左に移動");
