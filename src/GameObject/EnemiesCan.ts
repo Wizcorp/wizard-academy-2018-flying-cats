@@ -4,7 +4,6 @@ import { PlayerClass } from "./PlayerClass";
 
 export class EnemiesCan extends EnemiesBase {
 
-	private spriteName: string;
 	constructor(game: Game, player: PlayerClass, posX: number, posY: number) {
 		super(game, player, "enemyA", posX, posY, 1);
 	}

@@ -1,5 +1,6 @@
 import TimesteppedScene from "./base/TimesteppedScene";
 import PhaserTextStyle = Phaser.PhaserTextStyle;
+import { Sound } from "phaser-ce";
 
 export default class TitleScene extends TimesteppedScene {
 	/**
@@ -8,8 +9,12 @@ export default class TitleScene extends TimesteppedScene {
 	preload() {
 		this.game.load.spritesheet('startButton', 'assets/startButton.png', 200, 40);
 		this.game.load.spritesheet('startBg', 'assets/background.png', 768, 432);
-	}
 
+		//game.load.audio('boden', ['assets/audio/bodenstaendig_2000_in_rock_4bit.mp3', 'assets/audio/bodenstaendig_2000_in_rock_4bit.ogg']);
+		this.game.load.audio("TitleMp3", ['assets/music/title.mp3']);
+
+	}
+	music: Sound;
 	/**
 	 * Ran once at initialization.
 	 */
@@ -27,6 +32,7 @@ export default class TitleScene extends TimesteppedScene {
 
 		this.game.canvas.addEventListener('mousedown', onMouseDown);
 
+		this.music = this.game.sound.play('TitleMp3');
 	}
 
 	/**
