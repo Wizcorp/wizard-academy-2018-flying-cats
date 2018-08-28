@@ -37,7 +37,7 @@ export default class EnemiesBase {
 
     addDamage() {
         this.life --;
-        if (this.life < 0) {
+        if (this.life <= 0) {
             this.delete();
         }
     }

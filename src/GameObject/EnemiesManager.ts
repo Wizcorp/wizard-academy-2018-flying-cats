@@ -19,7 +19,7 @@ export class EnemiesManager {
 	}
 
 	init() {
-		
+
 	}
 
 	preload() {
@@ -82,7 +82,7 @@ export class EnemiesManager {
 				this.enemies.push(new EnemiesEbihurai(this.game, this.player, x, y));
 				break;
 			case 4:
-				this.enemies.push(new EnemiesShark(this.game, this.player, x, y));
+				this.enemies.push(new EnemiesShark(this.game, this.player, x, y, this));
 				break;
 		}
 	}
