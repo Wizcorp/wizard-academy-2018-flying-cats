@@ -18,8 +18,6 @@ export default class GameScene extends TimesteppedScene {
 	private lastShotTime: number;
 
 	init() {
-		this.gameUi = new GameUi(this.game);
-
 		this.bullets = [];
 		this.lastShotTime = 0;
 
@@ -43,8 +41,11 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('enemyD', 'assets/omurise.png');
 		this.game.load.image('enemyC', 'assets/bossenemy.png');
 		this.game.load.image('enemyE', 'assets/ebihurai.png');
+
 		this.game.load.image('bullet', 'assets/fork.png');
 		this.enemiesManager.preload();//敵
+
+		this.game.load.image('life', 'assets/life.png');
 
 		this.game.load.spritesheet('playerSprite', 'assets/playerA.png', 50, 50);
 	}
@@ -54,19 +55,12 @@ export default class GameScene extends TimesteppedScene {
 
 		this.enemiesManager.create();//敵
 
-		this.playerObject.createPlayer();
+		//todo:明日聞く。このタイミングだとまだPlayerObjectが呼べないので、
+		this.gameUi = new GameUi(this.game, this.playerObject);
+		this.playerObject.createPlayer(this.gameUi);
 
 		this.game.physics.arcade.enable([this.playerObject.mySprite]);//todo:Player.tsに移す
 
-		//テスト用でゲームオーバーに遷移させる機能。ゲームが完成したら削除する。
-		const onMouseDown = () => {
-			this.buttonOnClick();
-			this.game.canvas.removeEventListener('mousedown', onMouseDown);
-		};
-
-		this.game.canvas.addEventListener('mousedown', onMouseDown);
-	
-		this.gameUi = new GameUi(this.game);
 	}
 
 	fixedUpdate(dt: number) {

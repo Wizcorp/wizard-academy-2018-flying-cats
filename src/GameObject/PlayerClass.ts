@@ -1,8 +1,23 @@
 import TimesteppedScene from "../base/TimesteppedScene";
 import { Game, Keyboard } from "phaser-ce";
 import { Vector2 } from "../base/Math";
+import GameUi from "../GameObject/GameUi";
 
 export class PlayerClass {
+
+	private gameUi: GameUi;
+
+	private _life: number;
+
+	private damageReceivedTime: number;
+
+	set life(life: number) {
+		this._life = life;
+	}
+
+	get life(): number {
+		return this._life;
+	}
 
 	private cursors: Phaser.CursorKeys;
 
@@ -24,7 +39,9 @@ export class PlayerClass {
 		this.playerPosition = { x: this.game.width / 2, y: this.game.height / 2 + 30 };
 	}
 
-	createPlayer() {
+	createPlayer(gameUi: GameUi) {
+
+		this.gameUi = gameUi;
 
 		this.mySprite = this.game.add.sprite(this.playerPosition.x, this.playerPosition.y, 'playerSprite');
 		this.mySprite.smoothed = false;
@@ -33,11 +50,17 @@ export class PlayerClass {
 
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 
-		this.playerPosition = { x: this.game.width / 4 , y: this.game.height / 2 + 30 };
-		
+		this.playerPosition = { x: 100, y: this.game.height / 2 + 30 };
+
 		const catAnimationSpeed: number = 6;
 		this.mySprite.animations.add('wait', [0, 1, 2, 3], catAnimationSpeed, true);
 		this.mySprite.animations.play('wait');
+
+		this.life = 3;
+		this.gameUi.setLifeImage(this.life);
+
+
+		this.damageReceivedTime = new Date().getTime();//初期化
 
 		//当たり判定		
 		this.game.physics.arcade.enable(this.mySprite);
@@ -106,8 +129,33 @@ export class PlayerClass {
 		}
 	}
 
+	changeLife() {
+		const invincibleTime: number = 3000;
+		const damageReceivedTimeDiff: number = new Date().getTime() - this.damageReceivedTime;
+
+		if (damageReceivedTimeDiff > invincibleTime) {
+
+			this.damageReceivedTime = new Date().getTime();
+
+			this.life -= 1;
+			this.gameUi.setLifeImage(this.life);
+
+			if (this.life < 1) {
+				this.game.state.start('GameOverScene');
+			}
+
+		} else {
+			this.mySprite.alpha = 0.2;
+			setTimeout(() => {
+				this.mySprite.alpha = 1;
+			}, invincibleTime);
+		}
+	}
+
+	//todo:岸→高見さんへ本当はプロパティにしたい。
 	getPlayerPosition() {//高見16：25
 		return this.playerPosition;
 	}
+
 }
 

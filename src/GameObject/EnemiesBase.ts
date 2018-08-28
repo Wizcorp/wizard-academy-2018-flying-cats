@@ -24,8 +24,9 @@ export default class EnemiesBase {
         //各enemy中のupdate読む？例：EnemiesCan.update
     }
 
-    baceUpdate() {
-        this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.addDamage, null, this);
+    baceUpdate() {//todo:base
+				this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
+
         if(this.game.camera.x - this.sprite.x < 0){
             this.anable = false;
         }
@@ -39,7 +40,8 @@ export default class EnemiesBase {
         this.life --;
         if (this.life <= 0) {
             this.delete();
-        }
+				}
+				//console.log(this.player.changeLife);//よべてる
     }
 
     delete() {

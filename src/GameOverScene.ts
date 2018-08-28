@@ -41,6 +41,6 @@ export default class GameOverScene extends TimesteppedScene {
 	 * Callback for button.
 	 */
 	buttonOnClick() {
-		this.game.state.start('GameScene');
+		this.game.state.start('TitleScene');
 	}
 }
