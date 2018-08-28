@@ -33,7 +33,8 @@ export default class GameOverScene extends TimesteppedScene {
 	fixedUpdate(dt: number) {
 		// Skip to next scene with space or return
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER) || this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-			this.buttonOnClick();
+			//ゲーム中、スペースキーを押しっぱなしにして死亡する可能性があるため、ゲームオーバージーンからはキー入力で遷移させない。
+			//this.buttonOnClick();
 		}
 	}
 
