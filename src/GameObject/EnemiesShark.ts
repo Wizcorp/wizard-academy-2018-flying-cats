@@ -65,6 +65,6 @@ export class EnemiesShark extends EnemiesBase {
 	}
 
 	delete() {
-		this.game.state.start('GameScene');
+		this.game.state.start('GameOverScene');
 	}
 }
