@@ -23,10 +23,9 @@
  </layer>
  <objectgroup name="enemy " offsetx="-72.5953" offsety="-23.88">
   <object id="9" name="can" x="3033.11" y="162.022"/>
-  <object id="56" name="ebi" x="1287.4" y="169.271"/>
-  <object id="61" name="ebi" x="1335.22" y="103.864"/>
-  <object id="66" name="ebi" x="436.102" y="276.781"/>
-  <object id="67" name="ebi" x="1870.87" y="191.083"/>
+  <object id="56" name="ebi" x="1784.92" y="190.788"/>
+  <object id="61" name="ebi" x="1832.74" y="125.382"/>
+  <object id="66" name="ebi" x="1496.92" y="326.817"/>
   <object id="74" name="can" x="3827.8" y="60.4382"/>
   <object id="84" name="omurice" x="7365.48" y="178.955"/>
   <object id="87" name="omurice" x="8004.81" y="199.028"/>
@@ -36,16 +35,14 @@
   <object id="95" name="can" x="4024.37" y="46.1348"/>
   <object id="96" name="can" x="4088.8" y="76.2422"/>
   <object id="100" name="purin" x="5912.98" y="133.232"/>
-  <object id="105" name="ebi" x="500.288" y="275.768"/>
-  <object id="106" name="ebi" x="488.031" y="59.4289"/>
-  <object id="107" name="ebi" x="550.566" y="58.8509"/>
-  <object id="108" name="ebi" x="560.897" y="274.777"/>
-  <object id="113" name="ebi" x="613.265" y="197.176"/>
-  <object id="116" name="ebi" x="1407.49" y="65.4196"/>
-  <object id="119" name="ebi" x="1401.93" y="270.434"/>
-  <object id="121" name="ebi" x="1335.29" y="227.222"/>
-  <object id="126" name="ebi" x="1873.17" y="29.3342"/>
-  <object id="128" name="ebi" x="1876.12" y="108.943"/>
+  <object id="105" name="ebi" x="1561.1" y="325.804"/>
+  <object id="106" name="ebi" x="1558.27" y="158.532"/>
+  <object id="107" name="ebi" x="1620.81" y="157.954"/>
+  <object id="108" name="ebi" x="1621.71" y="324.813"/>
+  <object id="113" name="ebi" x="1469.52" y="239.696"/>
+  <object id="116" name="ebi" x="1905.01" y="86.9371"/>
+  <object id="119" name="ebi" x="1899.44" y="291.952"/>
+  <object id="121" name="ebi" x="1832.8" y="248.74"/>
   <object id="129" name="can" x="2478.48" y="63.4863"/>
   <object id="131" name="can" x="2560.58" y="62.498"/>
   <object id="138" name="can" x="3030.8" y="111.25"/>
@@ -58,7 +55,7 @@
   <object id="154" name="can" x="3879.97" y="98.9262"/>
   <object id="157" name="can" x="4025.19" y="107.941"/>
   <object id="161" name="can" x="4027.77" y="168.34"/>
-  <object id="165" name="ebi" x="422.212" y="58.9379"/>
+  <object id="165" name="ebi" x="1492.45" y="158.041"/>
   <object id="169" name="can" x="4087.99" y="138.023"/>
   <object id="177" name="purin" x="4812.89" y="154.599"/>
   <object id="179" name="purin" x="4688.18" y="157.113"/>
@@ -107,22 +104,18 @@
   <object id="252" name="omurice" x="8529.69" y="248.768"/>
   <object id="253" name="omurice" x="8621.63" y="307.332"/>
   <object id="254" name="omurice" x="8698.77" y="330.163"/>
-  <object id="261" name="ebi" x="679.475" y="199.308"/>
-  <object id="262" name="ebi" x="743.169" y="199.308"/>
-  <object id="264" name="ebi" x="809.222" y="199.308"/>
-  <object id="266" name="ebi" x="999.383" y="84.3096"/>
-  <object id="267" name="ebi" x="957.469" y="83.1906"/>
-  <object id="268" name="ebi" x="957.159" y="42.9895"/>
-  <object id="269" name="ebi" x="1001.66" y="42.9895"/>
-  <object id="270" name="ebi" x="1950.87" y="141.351"/>
-  <object id="271" name="ebi" x="1953.28" y="226.397"/>
-  <object id="272" name="ebi" x="1956.89" y="299.308"/>
-  <object id="274" name="ebi" x="2267.72" y="161.968"/>
-  <object id="275" name="ebi" x="2205.93" y="161.968"/>
-  <object id="277" name="ebi" x="611.833" y="121.151"/>
-  <object id="278" name="ebi" x="678.043" y="123.284"/>
-  <object id="279" name="ebi" x="741.737" y="123.284"/>
-  <object id="280" name="ebi" x="807.79" y="123.284"/>
+  <object id="261" name="ebi" x="1535.73" y="241.828"/>
+  <object id="262" name="ebi" x="1599.42" y="241.828"/>
+  <object id="264" name="ebi" x="1662.73" y="241.828"/>
+  <object id="270" name="ebi" x="2011.15" y="152.31"/>
+  <object id="271" name="ebi" x="2013.56" y="237.356"/>
+  <object id="272" name="ebi" x="2017.17" y="310.267"/>
+  <object id="274" name="ebi" x="2338.96" y="172.927"/>
+  <object id="275" name="ebi" x="2277.17" y="172.927"/>
+  <object id="277" name="ebi" x="1467.61" y="80.0488"/>
+  <object id="278" name="ebi" x="1533.82" y="82.1818"/>
+  <object id="279" name="ebi" x="1597.51" y="82.1818"/>
+  <object id="280" name="ebi" x="1663.56" y="82.1818"/>
   <object id="286" name="can" x="2956.94" y="292.514"/>
   <object id="287" name="can" x="2954.62" y="241.743"/>
   <object id="288" name="can" x="2954.7" y="191.924"/>
@@ -205,30 +198,12 @@
   <object id="376" name="omurice" x="8834.4" y="250.097"/>
   <object id="377" name="omurice" x="8926.34" y="308.661"/>
   <object id="378" name="omurice" x="9003.48" y="331.492"/>
-  <object id="379" name="ebi" x="1082.12" y="195.052"/>
-  <object id="380" name="ebi" x="1040.21" y="193.933"/>
-  <object id="381" name="ebi" x="1039.9" y="153.731"/>
-  <object id="382" name="ebi" x="1084.4" y="153.731"/>
-  <object id="383" name="ebi" x="988.243" y="297.14"/>
-  <object id="384" name="ebi" x="946.33" y="296.021"/>
-  <object id="385" name="ebi" x="946.019" y="255.819"/>
-  <object id="386" name="ebi" x="990.518" y="255.819"/>
-  <object id="402" name="ebi" x="1452.66" y="180.723"/>
-  <object id="403" name="ebi" x="1500.48" y="115.316"/>
-  <object id="404" name="ebi" x="1572.75" y="76.8716"/>
-  <object id="405" name="ebi" x="1567.19" y="281.886"/>
-  <object id="406" name="ebi" x="1500.55" y="238.674"/>
-  <object id="412" name="ebi" x="2025.48" y="29.3561"/>
-  <object id="413" name="ebi" x="2024.27" y="107.178"/>
-  <object id="414" name="ebi" x="2024.27" y="192.13"/>
-  <object id="415" name="ebi" x="1602.61" y="181.17"/>
-  <object id="416" name="ebi" x="1650.43" y="115.763"/>
-  <object id="417" name="ebi" x="1722.7" y="77.3182"/>
-  <object id="418" name="ebi" x="1717.14" y="282.333"/>
-  <object id="419" name="ebi" x="1650.5" y="239.121"/>
-  <object id="427" name="ebi" x="2096.14" y="299.464"/>
-  <object id="428" name="ebi" x="2098.44" y="137.716"/>
-  <object id="429" name="ebi" x="2098.74" y="223.961"/>
+  <object id="412" name="ebi" x="2085.75" y="40.315"/>
+  <object id="413" name="ebi" x="2084.55" y="118.137"/>
+  <object id="414" name="ebi" x="2084.55" y="203.089"/>
+  <object id="427" name="ebi" x="2156.41" y="310.423"/>
+  <object id="428" name="ebi" x="2158.71" y="148.675"/>
+  <object id="429" name="ebi" x="2159.01" y="234.92"/>
   <object id="430" name="can" x="2478.29" y="158.284"/>
   <object id="431" name="can" x="2560.39" y="157.296"/>
   <object id="432" name="can" x="2478.29" y="257.16"/>
