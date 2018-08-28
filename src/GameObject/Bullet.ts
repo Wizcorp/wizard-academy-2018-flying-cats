@@ -12,4 +12,8 @@ export default class Bullet extends Phaser.Sprite {
 	fixedUpdate() {
 		this.x += this.moveSpeed;
 	}
+
+	destroy(){
+		this.kill();
+	}
 }

@@ -3,9 +3,10 @@ import { EnemiesManager } from "./GameObject/EnemiesManager";
 import { PlayerClass } from "./GameObject/PlayerClass";
 import { BgClass } from "./GameObject/BgClass";
 import Bullet from "./GameObject/bullet"
-
+import GameUi from "./GameObject/GameUi"
 export default class GameScene extends TimesteppedScene {
 
+	private gameUi: GameUi;
 	private scrollSpeed: number;
 
 	private enemiesManager: EnemiesManager;
@@ -17,6 +18,8 @@ export default class GameScene extends TimesteppedScene {
 	private lastShotTime: number;
 
 	init() {
+		this.gameUi = new GameUi(this.game);
+
 		this.bullets = [];
 		this.lastShotTime = 0;
 
@@ -62,6 +65,8 @@ export default class GameScene extends TimesteppedScene {
 		};
 
 		this.game.canvas.addEventListener('mousedown', onMouseDown);
+	
+		this.gameUi = new GameUi(this.game);
 	}
 
 	fixedUpdate(dt: number) {
@@ -72,17 +77,26 @@ export default class GameScene extends TimesteppedScene {
 		this.enemiesManager.update();//敵の更新
 
 		//bulletの生成
-		if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && new Date().getTime() - this.lastShotTime >= 200){
+		if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && new Date().getTime() - this.lastShotTime >= 200) {
 			//todo:mySpriteもらうのかっこ悪いし、長くなる。player.tsはPhaser.spriteを継承したクラスにする。
 			const bullet = new Bullet(this.game, this.playerObject.mySprite.x, this.playerObject.mySprite.y, "bullet");
 			this.bullets.push(bullet);
 			this.lastShotTime = new Date().getTime();
 		}
-
+		
 		//bulletの処理と当たり判定
-		for (const bullet of this.bullets){
+		for (const bullet of this.bullets) {
 			bullet.fixedUpdate();
+
+			for(const enemy of this.enemiesManager.enemies){
+				if (this.game.physics.arcade.overlap(bullet, enemy.sprite)) {
+					enemy.addDamage();
+					bullet.destroy();
+					this.gameUi.addScore(1000);
+				}
+			}
 		}
+
 
 	}
 
