@@ -1,36 +1,20 @@
+import EnemiesBase from "./EnemiesBase";
+import { Game } from "phaser-ce";
+import { PlayerClass } from "./PlayerClass";
 
-import { Vector2 } from "../base/Mass";
-export class EnemiesPudding {
-	
-	private spriteName:string;
-	private life:number;
-	private moveMode:number;
+export class EnemiesPudding extends EnemiesBase {
 
-	private angle:number;
+	private angle: number;
 
-	constructor(){
-		this.spriteName = `enemyB`;
-		this.life = 3;
-		this.moveMode = 2;
-
-		this.angle = 0;
+	constructor(game: Game, player: PlayerClass, posX: number, posY: number) {
+		super(game, player, "enemyB", posX, posY, 3);
+		this.angle = Math.random()*100;
 	}
 
-	posUpdate(Pos:Vector2 = {x:0,y:0}){
+	update() {
 		this.angle += 0.02;
-		Pos.y = 217 + Math.sin(this.angle)*150;
-		return Pos;
-	}
-
-	getSprite(){
-		return this.spriteName;
-	}
-
-	getLife(){
-		return this.life;
-	}
-
-	getMoveMode(){
-		return this.moveMode;
+		//this.sprite.y += Math.sin(this.angle) * 0.1;
+		this.sprite.y -= Math.sin(this.angle) * 0.5;
+		//console.log(Math.sin(this.angle));
 	}
 }
