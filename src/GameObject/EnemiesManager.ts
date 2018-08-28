@@ -59,7 +59,9 @@ export class EnemiesManager {
 	public update(/*dt: number*/) {
 		for (let i = 0; i < this.enemies.length; i++) {
 			this.enemies[i].baceUpdate();
-			this.enemies[i].update();
+			if (this.enemies[i].anable){
+				this.enemies[i].update();
+			}
 		}
 	}
 

@@ -2,6 +2,7 @@ import { Game } from "phaser-ce";
 import { PlayerClass } from "./PlayerClass";
 
 export default class EnemiesBase {
+    public anable: Boolean = false;
     public sprite: Phaser.Sprite;
     private life: number;
     game: Game;
@@ -16,6 +17,7 @@ export default class EnemiesBase {
         this.sprite.anchor.set(0.5, 0.5);
         this.sprite.scale.set(1, 1);
         this.life = life;
+        this.anable  = false;
     }
 
     update() {
@@ -23,9 +25,13 @@ export default class EnemiesBase {
     }
 
     baceUpdate() {
-        this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.addDamage, null, this);
-        if (this.life < 0) {
-            this.delete();
+        if (this.anable){
+            this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.addDamage, null, this);
+            if(this.game.camera.x - this.sprite.x < 0){
+                this.anable = false;
+            }
+        }else if(this.game.camera.x - this.sprite.x + this.game.width > 0){
+            this.anable = true;
         }
     }
 
@@ -35,6 +41,9 @@ export default class EnemiesBase {
 
     addDamage() {
         this.life --;
+        if (this.life < 0) {
+            this.delete();
+        }
     }
 
     delete() {
