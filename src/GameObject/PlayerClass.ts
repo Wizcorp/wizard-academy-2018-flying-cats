@@ -1,11 +1,8 @@
 import TimesteppedScene from "../base/TimesteppedScene";
 import { Game, Keyboard } from "phaser-ce";
-import { Vector2 } from "../base/Mass";
+import { Vector2 } from "../base/Math";
 
 export class PlayerClass {
-
-	public playerSprite: Phaser.Sprite;
-//	public playerSprite2: Phaser.Sprite;
 
 	private cursors: Phaser.CursorKeys;
 
@@ -36,19 +33,16 @@ export class PlayerClass {
 
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 
-		//this.playerPosition = { x: this.game.width / 2, y: this.game.height / 2 + 30 };
-		this.playerPosition = { x:100, y:100};
-
+		this.playerPosition = { x: this.game.width / 4 , y: this.game.height / 2 + 30 };
+		
 		const catAnimationSpeed: number = 6;
 		this.mySprite.animations.add('wait', [0, 1, 2, 3], catAnimationSpeed, true);
 		this.mySprite.animations.play('wait');
 
-		//当たり判定
-		
-		//this.game.physics.arcade.enable(this.mySprite);
+		//当たり判定		
+		this.game.physics.arcade.enable(this.mySprite);
+
 	}
-
-
 
 	update() {
 		this.playerOperation();
