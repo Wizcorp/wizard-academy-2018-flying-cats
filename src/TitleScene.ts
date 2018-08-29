@@ -50,6 +50,7 @@ export default class TitleScene extends TimesteppedScene {
 	 * Callback for button.
 	 */
 	buttonOnClick() {
+		this.game.sound.stopAll();
 		this.game.state.start('GameScene');
 	}
 }
