@@ -19,6 +19,8 @@ export default class TitleScene extends TimesteppedScene {
 	 * Ran once at initialization.
 	 */
 	create() {
+		//すべての音を止める。buttonOnClick()のものを移動。
+		this.game.sound.stopAll();
 
 		const Bg = this.add.image(0, 0, "startBg");
 
@@ -50,7 +52,6 @@ export default class TitleScene extends TimesteppedScene {
 	 * Callback for button.
 	 */
 	buttonOnClick() {
-		this.game.sound.stopAll();
 		this.game.state.start('GameScene');
 	}
 }
