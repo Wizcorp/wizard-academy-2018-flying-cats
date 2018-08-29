@@ -17,6 +17,9 @@ export default class GameScene extends TimesteppedScene {
 	private bullets: Bullet[];
 	private lastShotTime: number;
 
+	private bulletMode: number = 0;
+	private bulletRate: number = 200;
+
 	init() {
 		this.bullets = [];
 		this.lastShotTime = 0;
@@ -26,7 +29,7 @@ export default class GameScene extends TimesteppedScene {
 		this.playerObject = new PlayerClass(this.game);
 		this.tilesetObject = new BgClass(this.game);
 
-		this.enemiesManager = new EnemiesManager(this.game, this.playerObject);
+		this.enemiesManager = new EnemiesManager(this.game, this.playerObject, this);
 		this.enemiesManager.init();//敵
 	}
 
@@ -71,7 +74,7 @@ export default class GameScene extends TimesteppedScene {
 		this.enemiesManager.update();//敵の更新
 
 		//bulletの生成
-		if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && new Date().getTime() - this.lastShotTime >= 200) {
+		if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && new Date().getTime() - this.lastShotTime >= this.bulletRate) {
 			//todo:mySpriteもらうのかっこ悪いし、長くなる。player.tsはPhaser.spriteを継承したクラスにする。
 			const bullet = new Bullet(this.game, this.playerObject.mySprite.x, this.playerObject.mySprite.y, "bullet");
 			this.bullets.push(bullet);
@@ -83,10 +86,12 @@ export default class GameScene extends TimesteppedScene {
 			bullet.fixedUpdate();
 
 			for (const enemy of this.enemiesManager.enemies) {
-				if (this.game.physics.arcade.overlap(bullet, enemy.sprite)) {
-					enemy.addDamage();
-					bullet.destroy();
-					this.gameUi.addScore(1000);
+				if (this.game.physics.arcade.overlap(bullet, enemy.sprite) && enemy.anable) {
+					console.log(enemy.anable);
+					if(enemy.addDamage()){
+						bullet.destroy();
+						this.gameUi.addScore(1000);
+					}
 				}
 			}
 		}
@@ -98,5 +103,11 @@ export default class GameScene extends TimesteppedScene {
 		this.game.state.start('GameOverScene');
 	}
 
+	set bulletModeNum(mode: number){
+		this.bulletMode = mode;
+		if (this.bulletMode = 1){
+			this.bulletRate = 50;
+		}
+	}
 }
 

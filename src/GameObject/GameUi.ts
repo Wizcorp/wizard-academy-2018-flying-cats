@@ -79,7 +79,7 @@ export default class GameUi {
 		this.killMapLifeImage();
 
 		for (let i = 0; i < life; i++) {
-			const mapLifeImages = this.game.add.sprite(this.game.width - 20 - (i * 7),this.game.height - 40, 'life');
+			const mapLifeImages = this.game.add.sprite(this.game.width - 20 - (i * 3),this.game.height - 40, 'life');
 			mapLifeImages.fixedToCamera = true;
 			mapLifeImages.scale.set(0.3, 0.3);
 			this.mapLifeImages.push(mapLifeImages);

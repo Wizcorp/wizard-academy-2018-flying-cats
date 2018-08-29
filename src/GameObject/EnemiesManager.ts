@@ -7,18 +7,22 @@ import { EnemiesEbihurai } from "./EnemiesEbihurai";
 import { EnemiesOmurise } from "./EnemiesOmurise";
 import { EnemiesShark } from "./EnemiesShark";
 import { EnemiesMoveCan } from "./EnemiesMoveCan";
+import { EnemiesItem } from "./EnemiesItem";
 import { PlayerClass } from "./PlayerClass";
+import GameScene  from "../GameScene";
 import ITiledObject from "./ITiledObject";
 import GameUi from "./GameUi"
 export class EnemiesManager {
 	public enemies: EnemiesBase[] = [];
 	private game: Game;
 	private player: PlayerClass;
+	private gameScene: GameScene;
 	private gameUi: GameUi;
 
-	constructor(game: Game, player: PlayerClass) {
+	constructor(game: Game, player: PlayerClass, GS: GameScene) {
 		this.player = player;
 		this.game = game;
+		this.gameScene = GS;
 	}
 
 	init() {
@@ -58,6 +62,8 @@ export class EnemiesManager {
 			}
 			this.addEnemy(mode, object.x, object.y);
 		}
+		//add item
+		this.addEnemy(6,1000,this.game.height/2);
 	}
 
 	GUUpdateTime: number = 0;
@@ -77,7 +83,6 @@ export class EnemiesManager {
 			this.gameUi.setMapLifeImage(this.enemies.length);
 			this.GUUpdateTime = this.GUUpdateTimeSet;
 		}
-		//this.gameUi.setSharkLifeImage(this.enemies.length);
 	}
 
 	addEnemy(mode: number = 0, x: number, y: number, sx: number = 0, sy: number = 0) {
@@ -100,11 +105,10 @@ export class EnemiesManager {
 			case 5://shark専用缶、移動する。
 				this.enemies.push(new EnemiesMoveCan(this.game, this.player, this, x, y, sx, sy));
 				break;
+			case 6://アイテム出現用キー
+				this.enemies.push(new EnemiesItem(this.game, this.player, this, x, y, this.gameScene));
+				break;
 		}
-	}
-
-	getEnemies() {
-		return this.enemies;
 	}
 	//タイルマップの中身を読み込むための関数
 	getObjectLayer(map: Phaser.Tilemap, layerName: string): ITiledObject[] {
