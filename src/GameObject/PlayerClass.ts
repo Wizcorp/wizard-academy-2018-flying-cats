@@ -10,6 +10,7 @@ export class PlayerClass {
 	private _life: number;
 
 	private damageReceivedTime: number;
+	key1: any;
 
 	set life(life: number) {
 		this._life = life;
@@ -20,6 +21,7 @@ export class PlayerClass {
 	}
 
 	private cursors: Phaser.CursorKeys;
+	private keyboard: Phaser.Keyboard;
 
 	private game: Game;
 	public mySprite: Phaser.Sprite;
@@ -65,6 +67,12 @@ export class PlayerClass {
 		//当たり判定		
 		this.game.physics.arcade.enable(this.mySprite);
 
+		this.key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
+		// this.key1.onDown.add(this.addPhaserDude, this);
+
+	}
+	private addPhaserDude() {
+		console.log("this is called")
 	}
 
 	update() {
@@ -83,8 +91,8 @@ export class PlayerClass {
 	playerOperation() {
 		const moveSpeed: number = 7;
 
-		if (this.cursors.left.isDown) {
-			//console.log("左に移動");
+		if (this.cursors.left.isDown || this.key1.isDown) {
+			console.log("左に移動");
 			this.playerPosition.x -= moveSpeed;
 		}
 		else if (this.cursors.right.isDown) {

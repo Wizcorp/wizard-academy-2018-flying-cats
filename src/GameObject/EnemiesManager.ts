@@ -71,11 +71,11 @@ export class EnemiesManager {
 
 	public update(/*dt: number*/) {
 		for (let i = 0; i < this.enemies.length; i++) {
-			if (this.enemies[i].anable) {
+			if (this.enemies[i].enable) {
 				this.enemies[i].baseUpdate();
 				this.enemies[i].update();
 			} else if (this.game.camera.x - this.enemies[i].sprite.x + this.game.width > 0) {
-				this.enemies[i].anable = true;
+				this.enemies[i].enable = true;
 			}
 		}
 		this.GUUpdateTime--;

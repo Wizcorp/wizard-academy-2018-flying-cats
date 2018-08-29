@@ -86,8 +86,8 @@ export default class GameScene extends TimesteppedScene {
 			bullet.fixedUpdate();
 
 			for (const enemy of this.enemiesManager.enemies) {
-				if (this.game.physics.arcade.overlap(bullet, enemy.sprite) && enemy.anable) {
-					console.log(enemy.anable);
+				if (this.game.physics.arcade.overlap(bullet, enemy.sprite) && enemy.enable) {
+					console.log(enemy.enable);
 					if(enemy.addDamage()){
 						bullet.destroy();
 						this.gameUi.addScore(1000);

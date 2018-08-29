@@ -2,7 +2,7 @@ import { Game } from "phaser-ce";
 import { PlayerClass } from "./PlayerClass";
 import { EnemiesManager } from "./EnemiesManager";
 export default class EnemiesBase {
-	public anable: Boolean = false;
+	public enable: Boolean = false;
 	public sprite: Phaser.Sprite;
 	public life: number;
 	game: Game;
@@ -18,7 +18,7 @@ export default class EnemiesBase {
 		this.sprite.anchor.set(0.5, 0.5);
 		this.sprite.scale.set(1, 1);
 		this.life = life;
-		this.anable = false;
+		this.enable = false;
 		this.EnemiesManager = EM;
 	}
 
