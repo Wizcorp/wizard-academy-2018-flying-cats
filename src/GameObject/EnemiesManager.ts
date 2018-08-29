@@ -6,6 +6,7 @@ import { EnemiesPudding } from "./EnemiesPudding";
 import { EnemiesEbihurai } from "./EnemiesEbihurai";
 import { EnemiesOmurise } from "./EnemiesOmurise";
 import { EnemiesShark } from "./EnemiesShark";
+import { EnemiesMoveCan } from "./EnemiesMoveCan";
 import { PlayerClass } from "./PlayerClass";
 import ITiledObject from "./ITiledObject";
 export class EnemiesManager {
@@ -59,7 +60,7 @@ export class EnemiesManager {
 	public update(/*dt: number*/) {
 		for (let i = 0; i < this.enemies.length; i++) {
 			if (this.enemies[i].anable) {
-				this.enemies[i].baceUpdate();
+				this.enemies[i].baseUpdate();
 				this.enemies[i].update();
 			} else if (this.game.camera.x - this.enemies[i].sprite.x + this.game.width > 0) {
 				this.enemies[i].anable = true;
@@ -67,22 +68,25 @@ export class EnemiesManager {
 		}
 	}
 
-	addEnemy(mode: number = 0, x: number, y: number) {
+	addEnemy(mode: number = 0, x: number, y: number, sx: number = 0, sy: number = 0) {
 		switch (mode) {
 			default:
-				this.enemies.push(new EnemiesCan(this.game, this.player, x, y));
+				this.enemies.push(new EnemiesCan(this.game, this.player, this, x, y));
 				break;
 			case 1:
-				this.enemies.push(new EnemiesPudding(this.game, this.player, x, y));
+				this.enemies.push(new EnemiesPudding(this.game, this.player, this, x, y));
 				break;
 			case 2:
-				this.enemies.push(new EnemiesOmurise(this.game, this.player, x, y));
+				this.enemies.push(new EnemiesOmurise(this.game, this.player, this, x, y));
 				break;
 			case 3:
-				this.enemies.push(new EnemiesEbihurai(this.game, this.player, x, y));
+				this.enemies.push(new EnemiesEbihurai(this.game, this.player, this, x, y));
 				break;
 			case 4:
-				this.enemies.push(new EnemiesShark(this.game, this.player, x, y, this));
+				this.enemies.push(new EnemiesShark(this.game, this.player, this, x, y));
+				break;
+			case 5://shark専用缶、移動する。
+				this.enemies.push(new EnemiesMoveCan(this.game, this.player, this, x, y, sx, sy));
 				break;
 		}
 	}

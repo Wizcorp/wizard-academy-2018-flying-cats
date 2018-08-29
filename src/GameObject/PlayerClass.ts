@@ -56,7 +56,7 @@ export class PlayerClass {
 		this.mySprite.animations.add('wait', [0, 1, 2, 3], catAnimationSpeed, true);
 		this.mySprite.animations.play('wait');
 
-		this.life = 3;
+		this.life = 300;
 		this.gameUi.setLifeImage(this.life);
 
 

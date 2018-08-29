@@ -5,8 +5,8 @@ import { PlayerClass } from "./PlayerClass";
 export class EnemiesOmurise extends EnemiesBase {
 
 	private spriteName: string;
-	constructor(game: Game, player: PlayerClass, posX: number, posY: number) {
-		super(game, player, "enemyD", posX, posY, 1);
+	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number) {
+		super(game, player, EM, "enemyD", posX, posY, 1);
 	}
 
 	update() {

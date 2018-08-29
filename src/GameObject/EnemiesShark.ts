@@ -1,60 +1,103 @@
 import EnemiesBase from "./EnemiesBase";
 import { Game } from "phaser-ce";
 import { PlayerClass } from "./PlayerClass";
-import { EnemiesManager } from "./EnemiesManager";
 
 export class EnemiesShark extends EnemiesBase {
 
-	enemiesManager: EnemiesManager;
 	aTime: number = 0;
-	mTime: number = 8;
-	mode: number = 0;
+	mTime: number = 80;
+	mode: number = 1;
 	modeTime: number = 0;
-	constructor(game: Game, player: PlayerClass, posX: number, posY: number, EM: any) {
-		super(game, player, "enemyC", posX, posY, 50);
-		this.enemiesManager = EM;
+	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number) {
+		super(game, player, EM, "enemyC", posX, posY, 80);
 	}
 
 	update() {
 		this.aTime--;
 		this.modeTime--;
 		if (this.modeTime < 0) {
-			this.modeTime = 300;
+			this.modeTime = 350;
 			this.mode++;
-			if (this.mode > 4) {
+			if (this.mode > 11) {
 				this.mode = 0;
 			}
 		}
 		switch (this.mode) {
-			default:
+			case 0:
 				if (this.aTime < 0) {
 					this.aTime = this.mTime;
-					this.enemiesManager.addEnemy(3, this.sprite.x, this.sprite.y);
+					this.EnemiesManager.addEnemy(3, this.sprite.x, this.sprite.y + 160);
+					this.EnemiesManager.addEnemy(3, this.sprite.x, this.sprite.y - 160);
+					this.EnemiesManager.addEnemy(3, this.sprite.x, this.sprite.y);
 				}
-				break;
-			case 1:
-				if (this.aTime < 0) {
-					this.aTime = 30;
-					this.enemiesManager.addEnemy(5, this.sprite.x, this.sprite.y);
-				}
-				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2)
-				this.sprite.x += this.fn_MMN(3, 0, this.game.camera.x - this.sprite.x + 700);
+				this.sprite.y += this.fn_MMN(this.game.height / 2 - this.sprite.y, -2);
+				this.sprite.x += 0.2;
 				break;
 			case 2:
+				if (this.aTime < 0) {
+					this.aTime = 20;
+					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -5, 0);
+				}
+				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2);
+				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
+				break;
+			case 3:
 				this.sprite.y -= 3;
 				if (this.sprite.y < 0) {
 					this.mode++;
 				}
 				break;
-			case 3:
+			case 4:
 				this.sprite.y += 5;
 				if (this.sprite.y > this.game.height) {
 					this.mode++;
 				}
 				break;
-			case 4:
-				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2)
-				this.sprite.x += this.fn_MMN(3, 0, this.game.camera.x - this.sprite.x + 700);
+			case 5:
+				this.mode++;
+				break;
+			case 6:
+				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2);
+				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
+				if (this.aTime < 0) {
+					this.aTime = 60;
+					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -2, -1);
+					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -2.4, -0.5);
+					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -3, 0);
+					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -2.4, 0.5);
+					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -2, 1);
+				}
+				break;
+			case 8:
+				if (this.aTime < 0) {
+					this.aTime = 23;
+					const h = this.game.height;
+					let i = this.modeTime * 5;
+					while (i > h) {
+						i -= h;
+					}
+					i -= h/2;
+					console.log(i +  "    " +Math.sqrt(Math.pow(h, 2) - Math.pow(i, 2)));
+					this.EnemiesManager.addEnemy(3, this.sprite.x - Math.sqrt(Math.pow(h, 2) - Math.pow(i, 2))/3,this.sprite.y +  i);
+				}
+				this.sprite.y += this.fn_MMN(this.game.height / 2 - this.sprite.y, -2);
+				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
+				break;
+			case 9:
+				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2);
+				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
+				break;
+			case 10:
+				this.sprite.x -= 10;
+				if (this.player.mySprite.x > this.sprite.x) {
+					this.mode++;
+				}
+				break;
+			case 11:
+				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2);
+				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
+				break;
+			default:
 				break;
 		}
 	}

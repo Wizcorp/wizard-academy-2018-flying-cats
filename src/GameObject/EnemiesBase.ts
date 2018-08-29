@@ -1,14 +1,15 @@
 import { Game } from "phaser-ce";
 import { PlayerClass } from "./PlayerClass";
-
+import { EnemiesManager } from "./EnemiesManager";
 export default class EnemiesBase {
 	public anable: Boolean = false;
 	public sprite: Phaser.Sprite;
-	private life: number;
+	public life: number;
 	game: Game;
 	player: PlayerClass;
+	EnemiesManager: EnemiesManager;
 
-	constructor(game: Game, player: PlayerClass, spriteName: string, posX: number, posY: number, life: number) {
+	constructor(game: Game, player: PlayerClass, EM: EnemiesManager, spriteName: string, posX: number, posY: number, life: number) {
 		this.game = game;
 		this.player = player;
 		this.sprite = this.game.add.sprite(posX, posY, spriteName);
@@ -18,17 +19,17 @@ export default class EnemiesBase {
 		this.sprite.scale.set(1, 1);
 		this.life = life;
 		this.anable = false;
+		this.EnemiesManager = EM;
 	}
 
 	update() {
-		//各enemy中のupdate読む？例：EnemiesCan.update
+		//各enemy中のupdateがあればそちらを読む。例：EnemiesCan.update()
 	}
 
-	baceUpdate() {//todo:base
+	baseUpdate() {//todo:base
 		this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
-
-		if (this.game.camera.x - this.sprite.x < 0) {
-			this.anable = false;
+		if (this.game.camera.x > this.sprite.x) {
+			this.addDamage();
 		}
 	}
 
@@ -41,11 +42,16 @@ export default class EnemiesBase {
 		if (this.life <= 0) {
 			this.delete();
 		}
-		//console.log(this.player.changeLife);//よべてる
 	}
 
 	delete() {
-		this.anable = false;
 		this.sprite.kill();
+		//処理軽減のために倒した敵を配列から削除。
+		//自分の番号がわからないのでライフからすべて検索。
+		for (let i = 0; i < this.EnemiesManager.enemies.length - 1 ; i++){
+			if (this.EnemiesManager.enemies[i].life <= 0){
+				this.EnemiesManager.enemies.splice(i , 1);
+			}
+		}
 	}
 }

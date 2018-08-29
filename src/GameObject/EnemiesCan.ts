@@ -4,8 +4,8 @@ import { PlayerClass } from "./PlayerClass";
 
 export class EnemiesCan extends EnemiesBase {
 
-	constructor(game: Game, player: PlayerClass, posX: number, posY: number) {
-		super(game, player, "enemyA", posX, posY, 1);
+	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number) {
+		super(game, player,EM , "enemyA", posX, posY, 1);
 	}
 
 	update() {
