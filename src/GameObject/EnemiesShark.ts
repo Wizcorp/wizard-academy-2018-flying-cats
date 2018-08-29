@@ -118,5 +118,6 @@ export class EnemiesShark extends EnemiesBase {
 		if (this.life <= 0) {
 			this.delete();
 		}
+		return true;
 	}
 }
