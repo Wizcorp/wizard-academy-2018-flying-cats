@@ -56,7 +56,7 @@ export class PlayerClass {
 		this.mySprite.animations.add('wait', [0, 1, 2, 3], catAnimationSpeed, true);
 		this.mySprite.animations.play('wait');
 
-		this.life = 300;
+		this.life = 5;
 		this.gameUi.setLifeImage(this.life);
 
 
@@ -150,11 +150,6 @@ export class PlayerClass {
 				this.mySprite.alpha = 1;
 			}, invincibleTime);
 		}
-	}
-
-	//todo:岸→高見さんへ本当はプロパティにしたい。
-	getPlayerPosition() {//高見16：25
-		return this.playerPosition;
 	}
 
 }

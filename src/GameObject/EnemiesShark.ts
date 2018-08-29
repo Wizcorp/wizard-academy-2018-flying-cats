@@ -1,15 +1,17 @@
 import EnemiesBase from "./EnemiesBase";
 import { Game } from "phaser-ce";
 import { PlayerClass } from "./PlayerClass";
-
+import GameUi from "./GameUi"
 export class EnemiesShark extends EnemiesBase {
 
 	aTime: number = 0;
-	mTime: number = 80;
+	mTime: number = 280;
 	mode: number = 1;
 	modeTime: number = 0;
-	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number) {
+	private gameUi: GameUi;
+	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gu: GameUi) {
 		super(game, player, EM, "enemyC", posX, posY, 80);
+		this.gameUi = gu;
 	}
 
 	update() {
@@ -76,9 +78,8 @@ export class EnemiesShark extends EnemiesBase {
 					while (i > h) {
 						i -= h;
 					}
-					i -= h/2;
-					console.log(i +  "    " +Math.sqrt(Math.pow(h, 2) - Math.pow(i, 2)));
-					this.EnemiesManager.addEnemy(3, this.sprite.x - Math.sqrt(Math.pow(h, 2) - Math.pow(i, 2))/3,this.sprite.y +  i);
+					i -= h / 2;
+					this.EnemiesManager.addEnemy(3, this.sprite.x - Math.sqrt(Math.pow(h, 2) - Math.pow(i, 2)) / 3, this.sprite.y + i);
 				}
 				this.sprite.y += this.fn_MMN(this.game.height / 2 - this.sprite.y, -2);
 				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
@@ -94,7 +95,7 @@ export class EnemiesShark extends EnemiesBase {
 				}
 				break;
 			case 11:
-				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2);
+				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -0.3);
 				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
 				break;
 			default:
@@ -109,5 +110,13 @@ export class EnemiesShark extends EnemiesBase {
 
 	delete() {
 		this.game.state.start('GameOverScene');
+	}
+
+	addDamage() {
+		this.life--;
+		this.gameUi.setSharkLifeImage(this.life);
+		if (this.life <= 0) {
+			this.delete();
+		}
 	}
 }

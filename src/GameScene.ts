@@ -53,10 +53,10 @@ export default class GameScene extends TimesteppedScene {
 	create() {
 		this.tilesetObject.createTileset();
 
-		this.enemiesManager.create();//敵
 
 		//todo:明日聞く。このタイミングだとまだPlayerObjectが呼べないので、
-		this.gameUi = new GameUi(this.game, this.playerObject);
+		this.gameUi = new GameUi(this.game);
+		this.enemiesManager.create(this.gameUi);//敵
 		this.playerObject.createPlayer(this.gameUi);
 
 		this.game.physics.arcade.enable([this.playerObject.mySprite]);//todo:Player.tsに移す

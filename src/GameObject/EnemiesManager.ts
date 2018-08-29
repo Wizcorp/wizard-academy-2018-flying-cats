@@ -9,10 +9,12 @@ import { EnemiesShark } from "./EnemiesShark";
 import { EnemiesMoveCan } from "./EnemiesMoveCan";
 import { PlayerClass } from "./PlayerClass";
 import ITiledObject from "./ITiledObject";
+import GameUi from "./GameUi"
 export class EnemiesManager {
 	public enemies: EnemiesBase[] = [];
 	private game: Game;
 	private player: PlayerClass;
+	private gameUi: GameUi;
 
 	constructor(game: Game, player: PlayerClass) {
 		this.player = player;
@@ -27,7 +29,8 @@ export class EnemiesManager {
 
 	}
 
-	create() {
+	create(gameUi: GameUi) {
+		this.gameUi = gameUi;//shark life
 		//load the map
 		const map = this.game.add.tilemap('map');
 		//Read the objects
@@ -57,6 +60,9 @@ export class EnemiesManager {
 		}
 	}
 
+	GUUpdateTime: number = 0;
+	GUUpdateTimeSet: number = 30;
+
 	public update(/*dt: number*/) {
 		for (let i = 0; i < this.enemies.length; i++) {
 			if (this.enemies[i].anable) {
@@ -66,6 +72,12 @@ export class EnemiesManager {
 				this.enemies[i].anable = true;
 			}
 		}
+		this.GUUpdateTime--;
+		if (this.GUUpdateTime < 0){
+			this.gameUi.setMapLifeImage(this.enemies.length);
+			this.GUUpdateTime = this.GUUpdateTimeSet;
+		}
+		//this.gameUi.setSharkLifeImage(this.enemies.length);
 	}
 
 	addEnemy(mode: number = 0, x: number, y: number, sx: number = 0, sy: number = 0) {
@@ -83,7 +95,7 @@ export class EnemiesManager {
 				this.enemies.push(new EnemiesEbihurai(this.game, this.player, this, x, y));
 				break;
 			case 4:
-				this.enemies.push(new EnemiesShark(this.game, this.player, this, x, y));
+				this.enemies.push(new EnemiesShark(this.game, this.player, this, x, y, this.gameUi));
 				break;
 			case 5://shark専用缶、移動する。
 				this.enemies.push(new EnemiesMoveCan(this.game, this.player, this, x, y, sx, sy));

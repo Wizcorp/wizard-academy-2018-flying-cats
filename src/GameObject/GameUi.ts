@@ -1,19 +1,20 @@
 import { Game } from "phaser-ce";
-import { PlayerClass } from "./PlayerClass"
-
 export default class GameUi {
 
 	private game: Game;
 	private score: number;
 	private scoreText: Phaser.Text;
-	private playerObject: PlayerClass;
 
 	private lifeImages: Phaser.Sprite[];
+	
+	private sharkLifeImages: Phaser.Sprite[];
+	private mapLifeImages: Phaser.Sprite[];
 
-	constructor(game: Game, player: PlayerClass) {
+	constructor(game: Game,) {
 		this.lifeImages = [];
-
-		this.playerObject = player;
+		
+		this.sharkLifeImages = [];
+		this.mapLifeImages = [];
 
 		this.game = game;
 		this.score = 0;
@@ -23,6 +24,7 @@ export default class GameUi {
 		this.scoreText.fixedToCamera = true;
 		this.game.add.existing(this.scoreText);
 
+		this.setSharkLifeImage(0);
 	}
 
 	fixedUpdate() {
@@ -47,6 +49,40 @@ export default class GameUi {
 			const lifeImage = this.game.add.sprite(20 + (i * 40), 40, 'life');
 			lifeImage.fixedToCamera = true;
 			this.lifeImages.push(lifeImage);
+		}
+	}
+	//shark
+	private killSharkLifeImage() {
+		for (let i = 0; i < this.sharkLifeImages.length; i++) {
+			this.sharkLifeImages[i].kill();
+		}
+	}
+
+	setSharkLifeImage(life: number) {
+		this.killSharkLifeImage();
+
+		for (let i = 0; i < life; i++) {
+			const sharkLifeImages = this.game.add.sprite(this.game.width - 20 - (i * 7), 70, 'life');
+			sharkLifeImages.fixedToCamera = true;
+			sharkLifeImages.scale.set(0.5, 0.5);
+			this.sharkLifeImages.push(sharkLifeImages);
+		}
+	}
+	//map
+	private killMapLifeImage() {
+		for (let i = 0; i < this.mapLifeImages.length; i++) {
+			this.mapLifeImages[i].kill();
+		}
+	}
+
+	setMapLifeImage(life: number) {
+		this.killMapLifeImage();
+
+		for (let i = 0; i < life; i++) {
+			const mapLifeImages = this.game.add.sprite(this.game.width - 20 - (i * 7),this.game.height - 40, 'life');
+			mapLifeImages.fixedToCamera = true;
+			mapLifeImages.scale.set(0.3, 0.3);
+			this.mapLifeImages.push(mapLifeImages);
 		}
 	}
 }
