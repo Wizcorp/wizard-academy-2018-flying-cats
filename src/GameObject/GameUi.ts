@@ -6,15 +6,17 @@ export default class GameUi {
 	private scoreText: Phaser.Text;
 
 	private lifeImages: Phaser.Sprite[];
-	
-	private sharkLifeImages: Phaser.Sprite[];
-	private mapLifeImages: Phaser.Sprite[];
 
-	constructor(game: Game,) {
+	private sharkLifeImages: Phaser.Sprite[];
+	private mapProgressImages: Phaser.Sprite;
+	private mapLength: number;
+
+	constructor(game: Game, ) {
 		this.lifeImages = [];
-		
+
 		this.sharkLifeImages = [];
-		this.mapLifeImages = [];
+
+		this.mapLength = 0;
 
 		this.game = game;
 		this.score = 0;
@@ -69,20 +71,21 @@ export default class GameUi {
 		}
 	}
 	//map
-	private killMapLifeImage() {
-		for (let i = 0; i < this.mapLifeImages.length; i++) {
-			this.mapLifeImages[i].kill();
+	setMapLifeImage(life: number) {
+		if (this.mapLength == 0) {
+			this.mapLengthStart();
+		} else {
+			this.mapProgressImages.fixedToCamera = false;
+			this.mapProgressImages.x = (this.game.width - 30) * (1 - life / this.mapLength);
+			this.mapProgressImages.fixedToCamera = true;
 		}
+		this.mapLength = Math.max(this.mapLength, life);
 	}
 
-	setMapLifeImage(life: number) {
-		this.killMapLifeImage();
-
-		for (let i = 0; i < life; i++) {
-			const mapLifeImages = this.game.add.sprite(this.game.width - 20 - (i * 3),this.game.height - 40, 'life');
-			mapLifeImages.fixedToCamera = true;
-			mapLifeImages.scale.set(0.3, 0.3);
-			this.mapLifeImages.push(mapLifeImages);
-		}
+	mapLengthStart() {
+		this.mapProgressImages = this.game.add.sprite(20, this.game.height - 30, 'life');
+		const sharkIcon = this.game.add.sprite(this.game.width - 30, this.game.height - 30, 'life');
+		this.mapProgressImages.fixedToCamera = true;
+		sharkIcon.fixedToCamera = true;
 	}
 }
