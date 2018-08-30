@@ -69,6 +69,7 @@ export default class GameScene extends TimesteppedScene {
 	}
 
 	fixedUpdate(dt: number) {
+				
 		this.game.camera.x += this.scrollSpeed;
 
 		this.tilesetObject.update();
@@ -89,13 +90,17 @@ export default class GameScene extends TimesteppedScene {
 
 			for (const enemy of this.enemiesManager.enemies) {
 				if (this.game.physics.arcade.overlap(bullet, enemy.sprite) && enemy.enable) {
-					console.log(enemy.enable);
 					if(enemy.addDamage()){
 						bullet.destroy();
 						this.gameUi.addScore(1000);
 					}
 				}
 			}
+		
+			if (bullet.x - this.game.camera.x > this.game.width){
+				bullet.destroy();
+			}
+
 		}
 
 
