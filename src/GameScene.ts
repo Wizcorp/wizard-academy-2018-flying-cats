@@ -44,6 +44,7 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('enemyD', 'assets/omurise.png');
 		this.game.load.image('enemyC', 'assets/bossenemy.png');
 		this.game.load.image('enemyE', 'assets/ebihurai.png');
+		this.game.load.image('ItemA', 'assets/item_sunGlass.png');
 
 		this.game.load.image('bullet', 'assets/fork.png');
 		this.enemiesManager.preload();//敵
@@ -64,6 +65,7 @@ export default class GameScene extends TimesteppedScene {
 
 		this.game.physics.arcade.enable([this.playerObject.mySprite]);//todo:Player.tsに移す
 
+		this.bulletRate = 200;
 	}
 
 	fixedUpdate(dt: number) {

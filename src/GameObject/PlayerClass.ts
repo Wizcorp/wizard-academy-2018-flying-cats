@@ -10,7 +10,11 @@ export class PlayerClass {
 	private _life: number;
 
 	private damageReceivedTime: number;
-	key1: any;
+	keyA: any;//key WSADに対応。
+	keyD: any;
+	keyW: any;
+	keyS: any;
+	keyEsc: any;
 
 	set life(life: number) {
 		this._life = life;
@@ -67,8 +71,11 @@ export class PlayerClass {
 		//当たり判定		
 		this.game.physics.arcade.enable(this.mySprite);
 
-		this.key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
-		// this.key1.onDown.add(this.addPhaserDude, this);
+		this.keyA = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
+		this.keyD = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
+		this.keyW = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
+		this.keyS = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
+
 
 	}
 	private addPhaserDude() {
@@ -91,20 +98,20 @@ export class PlayerClass {
 	playerOperation() {
 		const moveSpeed: number = 7;
 
-		if (this.cursors.left.isDown || this.key1.isDown) {
-			console.log("左に移動");
+		if (this.cursors.left.isDown || this.keyA.isDown) {
+			//console.log("左に移動");
 			this.playerPosition.x -= moveSpeed;
 		}
-		else if (this.cursors.right.isDown) {
+		else if (this.cursors.right.isDown || this.keyD.isDown) {
 			//console.log("右に移動");
 			this.playerPosition.x += moveSpeed;
 		}
 
-		if (this.cursors.up.isDown) {
+		if (this.cursors.up.isDown || this.keyW.isDown) {
 			//console.log("上に移動");
 			this.playerPosition.y -= moveSpeed;
 		}
-		else if (this.cursors.down.isDown) {
+		else if (this.cursors.down.isDown || this.keyS.isDown) {
 			//console.log("下に移動");
 			this.playerPosition.y += moveSpeed;
 		}

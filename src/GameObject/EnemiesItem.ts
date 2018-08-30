@@ -9,7 +9,7 @@ export class EnemiesItem extends EnemiesBase {
     private speed: number = 1;
     private gameScene: GameScene;
     constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gameScene: GameScene) {
-        super(game, player, EM, "item", posX, posY, 1);
+        super(game, player, EM, "ItemA", posX, posY, 1);
         this.gameScene = gameScene;
     }
 
@@ -30,5 +30,6 @@ export class EnemiesItem extends EnemiesBase {
 
     bulletModeSet(){
         this.gameScene.bulletModeNum = 1;
+        this.delete();
     }
 }
