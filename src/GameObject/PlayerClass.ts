@@ -10,7 +10,7 @@ export class PlayerClass {
 	private _life: number;
 
 	private damageReceivedTime: number;
-	keyA: any;//key WSADに対応。
+	keyA: any;//key 移動WSADに対応。
 	keyD: any;
 	keyW: any;
 	keyS: any;
@@ -77,9 +77,6 @@ export class PlayerClass {
 		this.keyS = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
 
 
-	}
-	private addPhaserDude() {
-		console.log("this is called")
 	}
 
 	update() {
