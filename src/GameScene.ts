@@ -15,7 +15,7 @@ export default class GameScene extends TimesteppedScene {
 
 	private enemiesManager: EnemiesManager;
 
-	private effectObjectManager :EffectObjectManager;
+	private effectObjectManager: EffectObjectManager;
 
 	private playerObject: PlayerClass;
 	private tilesetObject: BgClass;
@@ -55,6 +55,7 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('ItemA', 'assets/item_sunGlass.png');
 
 		this.game.load.image('effectHit', 'assets/lingSoft.png');
+		this.game.load.image('bomb', 'assets/bomb.png');
 
 		this.game.load.image('bullet', 'assets/fork.png');
 		this.enemiesManager.preload();//敵
@@ -94,7 +95,7 @@ export default class GameScene extends TimesteppedScene {
 			this.lastShotTime = new Date().getTime();
 
 			//testでエフェクトを発生
-		//	this.effectObjectManager.addEffect(Math.random() * this.game.width,Math.random() * this.game.height,EffectObjectType.hitEffect);
+			//this.effectObjectManager.addEffect(Math.random() * this.game.width,Math.random() * this.game.height,EffectObjectType.hitEffect);
 		}
 
 		//bulletの処理と当たり判定
@@ -104,6 +105,7 @@ export default class GameScene extends TimesteppedScene {
 			for (const enemy of this.enemiesManager.enemies) {
 				if (this.game.physics.arcade.overlap(bullet, enemy.sprite) && enemy.enable) {
 					if (enemy.addDamage()) {
+						this.effectObjectManager.addEffect(bullet.x, bullet.y, EffectObjectType.hitEffect);
 						bullet.destroy();
 						this.gameUi.addScore(1000);
 					}

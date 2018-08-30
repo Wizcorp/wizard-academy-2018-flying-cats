@@ -16,9 +16,6 @@ export default class EffectObjectManager {
 
 	constructor(game: Game) {
 		this.game = game;
-
-
-
 	}
 
 	update() {
@@ -27,28 +24,25 @@ export default class EffectObjectManager {
 		}
 	}
 
-	addEffect(x: number, y: number,type:EffectObjectType) {
-		switch (type){
+	addEffect(x: number, y: number, type: EffectObjectType) {
+		switch (type) {
 			case EffectObjectType.hitEffect:
-				this.effectObjects.push(new EffectObjectHit(this.game,x,y,this));
-			break;
+				this.effectObjects.push(new EffectObjectHit(this.game, x, y, this));
+				break;
 			case EffectObjectType.deathEffect:
-				//未実装だよ
+				//未実装。勉強のために増やせる設計をイメージして作りました。
 				//this.effectObjects.push(new EffectObject(this.game,x,y));
-			break;
+				break;
 			case EffectObjectType.itemGetEffect:
-				//未実装だよ
+				//未実装。勉強のために増やせる設計をイメージして作りました。
 				//this.effectObjects.push(new EffectObject(this.game,x,y));
-			break;	
+				break;
 		}
 	}
 
 	//オブジェクトの参照が無くても番号で殺せるようにした
-	destroy(index:number){
-		console.log("殺す前",this.effectObjects.length,this.effectObjects);
+	destroy(index: number) {
 		this.effectObjects.splice(index, 1);
-		console.log("殺した",this.effectObjects.length,this.effectObjects);
-
 	}
 
 }
