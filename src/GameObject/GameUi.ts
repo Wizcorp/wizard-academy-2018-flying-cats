@@ -72,7 +72,7 @@ export default class GameUi {
 		this.killSharkLifeImage();
 
 		for (let i = 0; i < life; i++) {
-			const sharkLifeImages = this.game.add.sprite(this.game.width - 20 - (i * 7), 70, 'life');
+			const sharkLifeImages = this.game.add.sprite(this.game.width - 20 - (i * 4), 70, 'life');
 			sharkLifeImages.fixedToCamera = true;
 			sharkLifeImages.scale.set(0.5, 0.5);
 			this.sharkLifeImages.push(sharkLifeImages);

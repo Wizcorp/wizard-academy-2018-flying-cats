@@ -30,7 +30,7 @@ export default class EnemiesBase {
 		this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
 		if (this.game.camera.x > this.sprite.x) {
 			this.addDamage();
-			this.player.changeAnimation("miss");
+			//this.player.changeAnimation("miss");
 		}
 	}
 

@@ -43,9 +43,6 @@ export default class TitleScene extends TimesteppedScene {
 
 		//score表示
 		this.putHighScore();
-
-		const resetButton = this.game.add.button(this.game.width - 320, this.game.height - 20, 'scoreResetButton', this.resetButtonOnClick, this, 1, 0, 2);
-
 	}
 
 	/**
@@ -80,6 +77,7 @@ export default class TitleScene extends TimesteppedScene {
 			this.scoreText.fixedToCamera = true;
 			this.game.add.existing(this.scoreText);
 			this.scoreText.text = "HIGH SCORE " + score;
+			const resetButton = this.game.add.button(this.game.width - 320, this.game.height - 20, 'scoreResetButton', this.resetButtonOnClick, this, 1, 0, 2);
 		}
 	}
 }

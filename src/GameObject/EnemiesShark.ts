@@ -8,13 +8,19 @@ export class EnemiesShark extends EnemiesBase {
 	mTime: number = 280;
 	mode: number = 1;
 	modeTime: number = 0;
+	dieTime: number = 0;
+	dieSprite: Phaser.Sprite;
 	private gameUi: GameUi;
 	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gu: GameUi) {
-		super(game, player, EM, "enemyC", posX, posY, 80);
+		super(game, player, EM, "enemyC", posX, posY, 180);
 		this.gameUi = gu;
 	}
 
 	update() {
+		if (this.life <= 1) {
+			this.dieAnimation();
+			this.life = 1;
+		}
 		this.aTime--;
 		this.modeTime--;
 		if (this.modeTime < 0) {
@@ -115,9 +121,20 @@ export class EnemiesShark extends EnemiesBase {
 	addDamage() {
 		this.life--;
 		this.gameUi.setSharkLifeImage(this.life);
-		if (this.life <= 0) {
+		return true;
+	}
+
+	dieAnimation(){
+		if(this.dieSprite == null){
+			this.dieSprite = this.game.add.sprite(this.sprite.x,this.sprite.y,"enemyCEnd");
+		}
+		this.dieTime ++;
+		this.sprite.y += this.dieTime/30;
+		this.sprite.y -= this.dieTime/100;
+		this.dieSprite.x = this.sprite.x-100;
+		this.dieSprite.y = this.sprite.y -75;
+		if(this.sprite.y > this.game.height + 300){
 			this.delete();
 		}
-		return true;
 	}
 }

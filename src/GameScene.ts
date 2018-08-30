@@ -50,6 +50,7 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('enemyB', 'assets/purin.png');
 		this.game.load.image('enemyD', 'assets/omurise.png');
 		this.game.load.image('enemyC', 'assets/bossenemy.png');
+		this.game.load.image('enemyCEnd', 'assets/sharkDie.png');
 		this.game.load.image('enemyE', 'assets/ebihurai.png');
 		this.game.load.image('ItemA', 'assets/item_sunGlass.png');
 
