@@ -29,7 +29,7 @@ export default class GameScene extends TimesteppedScene {
 	init() {
 		this.lastShotTime = 0;
 
-		this.scrollSpeed = 0.2;
+		this.scrollSpeed = 3;
 
 		this.playerObject = new PlayerClass(this.game);
 		this.tilesetObject = new BgClass(this.game);
@@ -67,8 +67,6 @@ export default class GameScene extends TimesteppedScene {
 	create() {
 		this.tilesetObject.createTileset();
 
-
-		//todo:明日聞く。このタイミングだとまだPlayerObjectが呼べないので、
 		this.gameUi = new GameUi(this.game);
 		this.enemiesManager.create(this.gameUi);//敵
 		this.playerObject.createPlayer(this.gameUi);
@@ -94,8 +92,8 @@ export default class GameScene extends TimesteppedScene {
 			this.bullets.push(bullet);
 			this.lastShotTime = new Date().getTime();
 
-			//test
-			this.effectObjectManager.addEffect(Math.random() * this.game.width,Math.random() * this.game.height,EffectObjectType.hitEffect);
+			//testでエフェクトを発生
+		//	this.effectObjectManager.addEffect(Math.random() * this.game.width,Math.random() * this.game.height,EffectObjectType.hitEffect);
 		}
 
 		//bulletの処理と当たり判定

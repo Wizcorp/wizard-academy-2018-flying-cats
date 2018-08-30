@@ -24,7 +24,7 @@ export default class EffectObject {
 	}
 
 	update(){
-		console.log("いきてます！",this.elapsedTime);
+//		console.log("いきてます！",this.elapsedTime);
 		this.elapsedTime = new Date().getTime() - this.createTime;
 		if (this.elapsedTime > this.lifespan){
 			this.destroyOeder();
