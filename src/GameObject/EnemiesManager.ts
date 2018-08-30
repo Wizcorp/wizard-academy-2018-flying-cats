@@ -80,7 +80,7 @@ export class EnemiesManager {
 		}
 		this.GUUpdateTime--;
 		if (this.GUUpdateTime < 0){
-			this.gameUi.setMapLifeImage(this.enemies.length);
+			this.gameUi.setMapGaugeImage(this.enemies.length);
 			this.GUUpdateTime = this.GUUpdateTimeSet;
 		}
 	}

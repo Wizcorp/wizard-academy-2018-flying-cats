@@ -59,8 +59,9 @@ export default class GameScene extends TimesteppedScene {
 		this.enemiesManager.preload();//敵
 
 		this.game.load.image('life', 'assets/life.png');
+		this.game.load.image('mapGauge', 'assets/timeIcon.png');
 
-		this.game.load.spritesheet('playerSprite', 'assets/playerA.png', 50, 50);
+		this.game.load.spritesheet('playerSprite', 'assets/catPlayer.png', 35, 40);
 	}
 
 	create() {
@@ -78,7 +79,7 @@ export default class GameScene extends TimesteppedScene {
 	}
 
 	fixedUpdate(dt: number) {
-				
+
 		this.game.camera.x += this.scrollSpeed;
 
 		this.tilesetObject.update();
@@ -103,31 +104,29 @@ export default class GameScene extends TimesteppedScene {
 
 			for (const enemy of this.enemiesManager.enemies) {
 				if (this.game.physics.arcade.overlap(bullet, enemy.sprite) && enemy.enable) {
-					if(enemy.addDamage()){
+					if (enemy.addDamage()) {
 						bullet.destroy();
 						this.gameUi.addScore(1000);
 					}
 				}
 			}
-		
-			if (bullet.x - this.game.camera.x > this.game.width){
+
+			if (bullet.x - this.game.camera.x > this.game.width) {
 				bullet.destroy();
 			}
-
 		}
-
-
 	}
 
 	buttonOnClick() {
 		this.game.state.start('GameOverScene');
 	}
 
-	set bulletModeNum(mode: number){
+	set bulletModeNum(mode: number) {
 		this.bulletMode = mode;
-		if (this.bulletMode = 1){
+		if (this.bulletMode = 1) {
 			this.bulletRate = 50;
 		}
+		this.playerObject.changeAnimation("waitPower", 10000000);
 	}
 }
 

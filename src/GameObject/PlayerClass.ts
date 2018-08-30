@@ -10,7 +10,7 @@ export class PlayerClass {
 	private _life: number;
 
 	private damageReceivedTime: number;
-	keyA: any;//key WSADに対応。
+	keyA: any;//key 移動WSADに対応。
 	keyD: any;
 	keyW: any;
 	keyS: any;
@@ -31,6 +31,9 @@ export class PlayerClass {
 	public mySprite: Phaser.Sprite;
 
 	private playerPosition: Vector2;
+	private animationChangeTime: number = 500;
+	private animationChange: number;
+	private animationWait: string = "wait";
 
 	get width(): number {
 		return this.mySprite.width;
@@ -60,7 +63,10 @@ export class PlayerClass {
 
 		const catAnimationSpeed: number = 6;
 		this.mySprite.animations.add('wait', [0, 1, 2, 3], catAnimationSpeed, true);
-		this.mySprite.animations.play('wait');
+		this.mySprite.animations.add('waitPower', [4, 5, 6, 7], catAnimationSpeed, true);
+		this.mySprite.animations.add('die', [8, 9, 10, 11], catAnimationSpeed, true);
+		this.mySprite.animations.add('miss', [12, 13, 14, 15], catAnimationSpeed, true);
+		this.mySprite.animations.play(this.animationWait);
 
 		this.life = 5;
 		this.gameUi.setLifeImage(this.life);
@@ -78,9 +84,6 @@ export class PlayerClass {
 
 
 	}
-	private addPhaserDude() {
-		console.log("this is called")
-	}
 
 	update() {
 		this.playerOperation();
@@ -89,6 +92,8 @@ export class PlayerClass {
 		//キャラ座標とカメラ座標からキャラの描画先を決める
 		this.mySprite.x = this.playerPosition.x + this.game.camera.x;
 		this.mySprite.y = this.playerPosition.y;
+
+		this.changeAnimationUpdate();//変更されたプレイヤー画像を戻す
 	}
 
 	/**
@@ -158,7 +163,7 @@ export class PlayerClass {
 			if (this.life < 1) {
 				this.game.state.start('GameOverScene');
 			}
-
+			this.changeAnimation("die");
 		} else {
 			this.mySprite.alpha = 0.2;
 			setTimeout(() => {
@@ -167,5 +172,21 @@ export class PlayerClass {
 		}
 	}
 
+	public changeAnimation(mode: string, time: number = this.animationChangeTime) {//miss,die,waitPower
+		this.animationChange = new Date().getTime() + time;
+		this.mySprite.animations.play(mode);
+		if (mode == "waitPower") {
+			this.animationWait = mode;
+		}
+	}
+
+	changeAnimationUpdate() {
+		if (this.animationChange != 0) {
+			if (this.animationChange < new Date().getTime()) {
+				this.animationChange = 0;
+				this.mySprite.animations.play(this.animationWait);
+			}
+		}
+	}
 }
 

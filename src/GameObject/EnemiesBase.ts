@@ -30,6 +30,7 @@ export default class EnemiesBase {
 		this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
 		if (this.game.camera.x > this.sprite.x) {
 			this.addDamage();
+			this.player.changeAnimation("miss");
 		}
 	}
 
@@ -50,9 +51,9 @@ export default class EnemiesBase {
 		//処理軽減のために倒した敵を配列から削除。
 		//自分の番号がわからないのでライフからすべて検索。
 		this.life = 0;
-		for (let i = 0; i < this.EnemiesManager.enemies.length - 1 ; i++){
-			if (this.EnemiesManager.enemies[i].life <= 0){
-				this.EnemiesManager.enemies.splice(i , 1);
+		for (let i = 0; i < this.EnemiesManager.enemies.length - 1; i++) {
+			if (this.EnemiesManager.enemies[i].life <= 0) {
+				this.EnemiesManager.enemies.splice(i, 1);
 			}
 		}
 	}
