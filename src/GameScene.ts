@@ -4,6 +4,10 @@ import { PlayerClass } from "./GameObject/PlayerClass";
 import { BgClass } from "./GameObject/BgClass";
 import Bullet from "./GameObject/bullet"
 import GameUi from "./GameObject/GameUi"
+import EffectObject from "./GameObject/EffectObject"
+import EffectObjectManager from "./GameObject/EffectObjectManager"
+import { EffectObjectType } from "./base/Enum";
+
 export default class GameScene extends TimesteppedScene {
 
 	private gameUi: GameUi;
@@ -11,23 +15,26 @@ export default class GameScene extends TimesteppedScene {
 
 	private enemiesManager: EnemiesManager;
 
+	private effectObjectManager :EffectObjectManager;
+
 	private playerObject: PlayerClass;
 	private tilesetObject: BgClass;
 
-	private bullets: Bullet[];
+	private bullets: Bullet[] = [];
 	private lastShotTime: number;
 
 	private bulletMode: number = 0;
 	private bulletRate: number = 200;
 
 	init() {
-		this.bullets = [];
 		this.lastShotTime = 0;
 
-		this.scrollSpeed = 3;
+		this.scrollSpeed = 0.2;
 
 		this.playerObject = new PlayerClass(this.game);
 		this.tilesetObject = new BgClass(this.game);
+
+		this.effectObjectManager = new EffectObjectManager(this.game);
 
 		this.enemiesManager = new EnemiesManager(this.game, this.playerObject, this);
 		this.enemiesManager.init();//敵
@@ -45,6 +52,8 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('enemyC', 'assets/bossenemy.png');
 		this.game.load.image('enemyE', 'assets/ebihurai.png');
 		this.game.load.image('ItemA', 'assets/item_sunGlass.png');
+
+		this.game.load.image('effectHit', 'assets/lingSoft.png');
 
 		this.game.load.image('bullet', 'assets/fork.png');
 		this.enemiesManager.preload();//敵
@@ -75,13 +84,17 @@ export default class GameScene extends TimesteppedScene {
 		this.tilesetObject.update();
 		this.playerObject.update();
 		this.enemiesManager.update();//敵の更新
+		this.effectObjectManager.update();
 
 		//bulletの生成
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && new Date().getTime() - this.lastShotTime >= this.bulletRate) {
-			//todo:mySpriteもらうのかっこ悪いし、長くなる。player.tsはPhaser.spriteを継承したクラスにする。
-			const bullet = new Bullet(this.game, this.playerObject.mySprite.x, this.playerObject.mySprite.y, "bullet");
+
+			const bullet = new Bullet(this.game, this.playerObject.mySprite.x, this.playerObject.mySprite.y, "bullet", this.effectObjectManager);
 			this.bullets.push(bullet);
 			this.lastShotTime = new Date().getTime();
+
+			//test
+			this.effectObjectManager.addEffect(Math.random() * this.game.width,Math.random() * this.game.height,EffectObjectType.hitEffect);
 		}
 
 		//bulletの処理と当たり判定
