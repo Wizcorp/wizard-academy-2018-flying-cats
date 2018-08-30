@@ -50,6 +50,7 @@ export default class GameScene extends TimesteppedScene {
 		this.enemiesManager.preload();//敵
 
 		this.game.load.image('life', 'assets/life.png');
+		this.game.load.image('mapGauge', 'assets/timeIcon.png');
 
 		this.game.load.spritesheet('playerSprite', 'assets/catPlayer.png', 35, 40);
 	}

@@ -1,4 +1,6 @@
 import { Game } from "phaser-ce";
+import { ScoreManager } from "../ScoreManager";
+
 export default class GameUi {
 
 	private game: Game;
@@ -23,12 +25,12 @@ export default class GameUi {
 		this.score = 0;
 		const myStyle = { font: "30px Arial", fill: "#ff0044", align: "center" };
 
-		this.scoreText = new Phaser.Text(this.game, 20, 5, "socore:0", myStyle);
+		this.scoreText = new Phaser.Text(this.game, 20, 5, "score:0", myStyle);
 		this.scoreText.fixedToCamera = true;
 		this.game.add.existing(this.scoreText);
 
 		this.setSharkLifeImage(0);
-		this.mapProgressImages = this.game.add.sprite(20, this.game.height - 30, 'life');
+		this.mapProgressImages = this.game.add.sprite(20, this.game.height - 30, 'mapGauge');
 		const sharkIcon = this.game.add.sprite(this.game.width - 30, this.game.height - 30, 'life');
 		this.mapProgressImages.fixedToCamera = true;
 		sharkIcon.fixedToCamera = true;
@@ -41,6 +43,7 @@ export default class GameUi {
 	addScore(score: number) {
 		this.score += score;
 		this.scoreText.text = "score:" + this.score;
+		ScoreManager(this.score);
 	}
 
 	private killLiifeImage() {
@@ -76,10 +79,10 @@ export default class GameUi {
 		}
 	}
 	//map
-	setMapGaugeImage(life: number) {
-		this.numberOfEnemies = Math.max(this.numberOfEnemies, life);
+	setMapGaugeImage(enemiesLength: number) {
+		this.numberOfEnemies = Math.max(this.numberOfEnemies, enemiesLength);
 		this.mapProgressImages.fixedToCamera = false;
-		this.mapProgressImages.x = (this.game.width - 30) * (1 - life / this.numberOfEnemies);
+		this.mapProgressImages.x = (this.game.width - 30) * (1 - enemiesLength / this.numberOfEnemies);
 		this.mapProgressImages.fixedToCamera = true;
 	}
 }
