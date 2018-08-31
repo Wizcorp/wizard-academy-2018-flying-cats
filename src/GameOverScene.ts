@@ -3,11 +3,10 @@ import PhaserTextStyle = Phaser.PhaserTextStyle;
 
 export default class GameOverScene extends TimesteppedScene {
 
-	private isClear: boolean
+	private isClear: Boolean
 
-	init(isClear: boolean) {
-		this.isClear = isClear;
-		console.log(isClear);
+	init( options:{isClear: Boolean} ) {
+		this.isClear = options.isClear;
 	}
 	/**
 	 * Load sprites and various assets here.
@@ -23,10 +22,12 @@ export default class GameOverScene extends TimesteppedScene {
 	 */
 	create() {
 		//クリアとゲームオーバーで違う部分
-		if (this.isClear) {
+		if (this.isClear)
+		 {
 			const Bg = this.add.image(0, 0, "gameClearBg");
 		}
-		else {
+		else 
+		{
 			const Bg = this.add.image(0, 0, "gameOverBg");
 			const touchMessage = this.game.add.button(this.game.width / 2, 295, 'touchButton', this.buttonOnClick, this);
 			touchMessage.anchor.set(0.5, 0.5);
