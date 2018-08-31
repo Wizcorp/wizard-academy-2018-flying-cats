@@ -15,13 +15,13 @@ export class EnemiesItem extends EnemiesBase {
 
     update() {
         this.sprite.x -= this.speed;
-    }
-
-	baseUpdate() {//todo:base
-        this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.bulletModeSet, null, this);
 		if (this.game.camera.x > this.sprite.x) {
 			this.delete();
 		}
+        this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.bulletModeSet, null, this);
+    }
+
+	baseUpdate() {//todo:base
 	}
 
     addDamage() {

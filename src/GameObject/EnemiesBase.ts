@@ -57,14 +57,7 @@ export default class EnemiesBase {
 
 	delete() {
 		this.sprite.kill();
-		//処理軽減のために倒した敵を配列から削除。
-		//自分の番号がわからないのでライフからすべて検索。
-		// this.life = 0;
-		// for (let i = 0; i < this.EnemiesManager.enemies.length - 1; i++) {
-		// 	if (this.EnemiesManager.enemies[i].life <= 0) {
-		// 		this.EnemiesManager.enemies.splice(i, 1);
-		// 	}
-		// }
-		this.EnemiesManager.deleteEnemy(this.EnemiesManager.enemies.indexOf(this))
+		console.log("base delete" + this.EnemiesManager.enemies.indexOf(this));
+		this.EnemiesManager.deleteEnemy(this.EnemiesManager.enemies.indexOf(this));
 	}
 }
