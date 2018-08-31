@@ -3,6 +3,7 @@ import EffectObjectManager from "./EffectObjectManager";
 export default class Bullet extends Phaser.Sprite {
 
 	private moveSpeed: number;
+	// TODO Florian -- unused, remove
 	private effectObjectMnager: EffectObjectManager;
 
 	constructor(game: any, x: number, y: number, imageName: string, effectObjectMnager: EffectObjectManager) {

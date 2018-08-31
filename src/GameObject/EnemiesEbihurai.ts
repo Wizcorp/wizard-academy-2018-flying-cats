@@ -26,6 +26,7 @@ export class EnemiesEbihurai extends EnemiesBase {
 		// console.log("angle " + this.sprite.angle);
 	}
 
+	// TODO Florian -- not used. Also, since you also have it in the Shark, you could create another module, or put it in EnemiesBase so that everyone has access.
 	fn_MMN(x: number, y: number, z: number = - y) {//ｘを最小ｙ、最大ｚにする
 		x = Math.max(Math.min(x, z), y);
 		return x;

@@ -1,5 +1,5 @@
 import TimesteppedScene from "./base/TimesteppedScene";
-import PhaserTextStyle = Phaser.PhaserTextStyle;
+import PhaserTextStyle = Phaser.PhaserTextStyle; // TODO Florian -- unused, remove
 
 export default class ContinueScene extends TimesteppedScene {
 	/**

@@ -89,6 +89,7 @@ export default class GameScene extends TimesteppedScene {
 
 		this.game.camera.x += this.scrollSpeed;
 
+		// TODO Florian -- good structure, but usually if you get a dt, you should pass it down (it's there for a reason, try on a slow machine)
 		this.tilesetObject.update();
 		this.playerObject.update();
 		this.enemiesManager.update();//敵の更新

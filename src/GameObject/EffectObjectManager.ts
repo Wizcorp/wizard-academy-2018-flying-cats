@@ -35,8 +35,16 @@ export default class EffectObjectManager {
 	}
 
 	//オブジェクトの参照が無くても番号で殺せるようにした
-	destroy(index: number) {
+	// TODO Florian -- Avoid using `destroy` as a name, since it's used in Phaser to mean "destroy this object" (not a child object)
+	// destroy(index: number) {
+	// 	this.effectObjects.splice(index, 1);
+	// }
+
+	destroyEffectObject(effect: EffectObject) {
+		const index = this.effectObjects.indexOf(effect);
+		console.assert(index !== -1);
 		this.effectObjects.splice(index, 1);
 	}
+
 }
 

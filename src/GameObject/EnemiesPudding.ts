@@ -13,6 +13,7 @@ export class EnemiesPudding extends EnemiesBase {
 
 	update() {
 		this.angle += 0.02;
+		// TODO Florian -- great
 		this.sprite.y -= Math.sin(this.angle) * 0.5;
 	}
 }

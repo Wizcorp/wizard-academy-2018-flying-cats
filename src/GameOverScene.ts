@@ -8,6 +8,7 @@ export default class GameOverScene extends TimesteppedScene {
 	private music: SoundSystem;
 
 
+	// TODO Florian -- nice
 	init(options: { isClear: Boolean }) {
 		this.isClear = options.isClear;
 		this.music = new SoundSystem(this.game);

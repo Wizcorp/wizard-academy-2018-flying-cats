@@ -42,6 +42,7 @@ export class PlayerClass {
 	}
 
 	get height(): number {
+		// TODO Florian -- んん？方形だと良いけど (笑)
 		return this.mySprite.width;
 	}
 
