@@ -14,7 +14,7 @@ export class EnemiesShark extends EnemiesBase {
 	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gu: GameUi) {
 		super(game, player, EM, "enemyC", posX, posY, 180);
 		this.gameUi = gu;
-		this.game.camera.x = 8000;
+		//this.game.camera.x = 8000;
 	}
 
 	update() {
@@ -117,9 +117,9 @@ export class EnemiesShark extends EnemiesBase {
 				break;
 			case 8:
 				if (this.aTime < 0) {
-					this.aTime = 10;
+					this.aTime = 20;
 					const h = this.game.height;
-					let i = this.modeTime * 16;
+					let i = this.modeTime * 1;
 					while (i > h) {
 						i -= h;
 					}
