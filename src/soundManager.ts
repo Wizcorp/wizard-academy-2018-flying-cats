@@ -4,6 +4,9 @@ export class SoundSystem {
     game: Game;
     music: Sound;
     SEA: Sound;
+    SEB: Sound;
+    SEC: Sound;
+    SED: Sound;
     
     constructor(game: Game) {
         this.game = game;
@@ -28,12 +31,15 @@ export class SoundSystem {
         switch (num) {
             default:
                 this.music = this.game.sound.play("title");
+                this.music.loopFull();
                 break;
             case 2:
                 this.music = this.game.sound.play("Play");
+                this.music.loopFull();
                 break;
             case 3:
                 this.music = this.game.sound.play("Boss");
+                this.music.loopFull();
                 break;
         }
     }
@@ -45,16 +51,16 @@ export class SoundSystem {
                 this.SEA.volume = 2;
                 break;
             case 2:
-                this.SEA = this.game.sound.play("playerAttacked");
-                this.SEA.volume = 3;
+                this.SEB = this.game.sound.play("playerAttacked");
+                this.SEB.volume = 3;
                 break;
             case 3:
-                this.SEA = this.game.sound.play("enemyDie");
-                this.SEA.volume = 2;
+                this.SEC = this.game.sound.play("enemyDie");
+                this.SEC.volume = 2;
                 break;
             case 4:
-                this.SEA = this.game.sound.play("bossDie");
-                this.SEA.volume = 6;
+                this.SED = this.game.sound.play("bossDie");
+                this.SED.volume = 100;
                 break;
         }
     }
