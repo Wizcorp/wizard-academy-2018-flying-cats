@@ -6,7 +6,7 @@ export class EnemiesMoveCan extends EnemiesBase {
 
 	private speed: Vector2;
 	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, speedX: number, speedY: number) {
-		super(game, player, EM , "enemyA", posX, posY, 2);
+		super(game, player, EM , "enemyAS", posX, posY, 2);
 		this.speed = { x: speedX, y: speedY };
 	}
 

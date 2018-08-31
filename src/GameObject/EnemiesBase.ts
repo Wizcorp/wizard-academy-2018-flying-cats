@@ -5,6 +5,7 @@ export default class EnemiesBase {
 	public enable: Boolean = false;
 	public sprite: Phaser.Sprite;
 	public life: number;
+	public damageTime: number = 0;
 	game: Game;
 	player: PlayerClass;
 	EnemiesManager: EnemiesManager;
@@ -32,6 +33,13 @@ export default class EnemiesBase {
 			this.addDamage();
 			//this.player.changeAnimation("miss");
 		}
+		if(this.damageTime != 0){
+			if( this.damageTime<new Date().getTime()){
+				this.sprite.alpha = 1;
+			}else{
+				this.sprite.alpha = 0.5;
+			}
+		}
 	}
 
 	fixedUpdate(dt: number) {
@@ -43,6 +51,7 @@ export default class EnemiesBase {
 		if (this.life <= 0) {
 			this.delete();
 		}
+		this.damageTime = new Date().getTime() + 200;
 		return true;
 	}
 

@@ -52,6 +52,7 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('enemyC', 'assets/bossenemy.png');
 		this.game.load.image('enemyCEnd', 'assets/sharkDie.png');
 		this.game.load.image('enemyE', 'assets/ebihurai.png');
+		this.game.load.image('enemyAS', 'assets/sharkCan.png');
 		this.game.load.image('ItemA', 'assets/item_sunGlass.png');
 
 		this.game.load.image('effectHit', 'assets/lingSoft.png');
@@ -127,7 +128,7 @@ export default class GameScene extends TimesteppedScene {
 		if (this.bulletMode = 1) {
 			this.bulletRate = 50;
 		}
-		this.playerObject.changeAnimation("waitPower", 10000000);
+		this.playerObject.changeAnimation("waitPower");
 	}
 }
 
