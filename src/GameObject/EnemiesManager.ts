@@ -36,6 +36,7 @@ export class EnemiesManager {
 	}
 
 	create(gameUi: GameUi) {
+		this.enemies = [];
 		this.gameUi = gameUi;//shark life
 		//load the map
 		const map = this.game.add.tilemap('map');

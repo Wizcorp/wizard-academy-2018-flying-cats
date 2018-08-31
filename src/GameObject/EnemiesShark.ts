@@ -25,6 +25,8 @@ export class EnemiesShark extends EnemiesBase {
 	}
 
 	baseUpdate() {
+
+		this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
 		if (this.life <= 0) {
 			this.dieAnimation();
 		} else {
@@ -155,7 +157,7 @@ export class EnemiesShark extends EnemiesBase {
 					}
 					i -= h / 2;
 					this.modeTime -= 11;
-					this.EnemiesManager.addEnemy(3, this.sprite.x - Math.sqrt(Math.pow(h / 2, 2) - Math.pow(i, 2))/2, this.sprite.y + i / 1);
+					this.EnemiesManager.addEnemy(3, this.sprite.x - Math.sqrt(Math.pow(h / 2, 2) - Math.pow(i, 2)) / 2, this.sprite.y + i / 1);
 					this.SoundSystem.SE = 1;
 				}
 				this.sprite.y += this.fn_MMN(this.game.height / 2 - this.sprite.y, -2);
