@@ -8,8 +8,8 @@ export class EnemiesItem extends EnemiesBase {
 
     private speed: number = 1;
     private gameScene: GameScene;
-    constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gameScene: GameScene) {
-        super(game, player, EM, "ItemA", posX, posY, 1);
+    constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gameScene: GameScene, soundManager: any) {
+        super(game, player, EM, "ItemA", posX, posY, 1, soundManager);
         this.gameScene = gameScene;
     }
 

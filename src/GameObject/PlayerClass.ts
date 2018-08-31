@@ -2,12 +2,14 @@ import TimesteppedScene from "../base/TimesteppedScene";
 import { Game, Keyboard } from "phaser-ce";
 import { Vector2 } from "../base/Math";
 import GameUi from "../GameObject/GameUi";
-
+import { SoundSystem } from "../soundManager";
 export class PlayerClass {
 
 	private gameUi: GameUi;
 
 	private _life: number;
+
+	private music: SoundSystem;
 
 	private damageReceivedTime: number;
 	keyA: any;//key 移動WSADに対応。
@@ -48,7 +50,8 @@ export class PlayerClass {
 		this.playerPosition = { x: this.game.width / 2, y: this.game.height / 2 + 30 };
 	}
 
-	createPlayer(gameUi: GameUi) {
+	createPlayer(gameUi: GameUi, music: SoundSystem) {
+		this.music = music;
 
 		this.gameUi = gameUi;
 
@@ -164,6 +167,7 @@ export class PlayerClass {
 				this.game.state.start('GameOverScene', true, false, { isClear: false});
 			}
 			this.changeAnimation("die");
+			this.music.SE = 2;
 		} else {
 			this.mySprite.alpha = 0.2;
 			setTimeout(() => {

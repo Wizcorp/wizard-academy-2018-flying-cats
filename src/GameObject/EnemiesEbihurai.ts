@@ -5,8 +5,8 @@ import { Vector2, multVectors } from "../base/Math";
 export class EnemiesEbihurai extends EnemiesBase {
 
 	private moveSpeed: number = 1;
-	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number) {
-		super(game, player, EM, "enemyE", posX, posY, 1);
+	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, soundManager: any) {
+		super(game, player, EM, "enemyE", posX, posY, 1, soundManager);
 	}
 
 	update() {

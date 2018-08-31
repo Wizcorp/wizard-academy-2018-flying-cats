@@ -2,6 +2,9 @@ import EnemiesBase from "./EnemiesBase";
 import { Game } from "phaser-ce";
 import { PlayerClass } from "./PlayerClass";
 import GameUi from "./GameUi"
+import { SoundSystem } from "../soundManager";
+import { multVectors } from "../base/Math";
+
 export class EnemiesShark extends EnemiesBase {
 
 	aTime: number = 0;
@@ -10,11 +13,16 @@ export class EnemiesShark extends EnemiesBase {
 	modeTime: number = 120;//表示されてからの待機時間
 	dieTime: number = 0;
 	dieSprite: Phaser.Sprite;
+	beforeFlameEnable: boolean = false;
+	private Music: SoundSystem;
 	private gameUi: GameUi;
-	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gu: GameUi) {
-		super(game, player, EM, "enemyC", posX, posY, 180);
+	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gu: GameUi, soundSystem: SoundSystem) {
+		super(game, player, EM, "enemyC", posX, posY, 180, soundSystem);
 		this.gameUi = gu;
 		//this.game.camera.x = 8000;
+		//music
+		this.Music = soundSystem;
+		this.Music.musicStart(3);//startに移動
 	}
 
 	update() {
@@ -30,6 +38,13 @@ export class EnemiesShark extends EnemiesBase {
 				this.sprite.alpha = 0.7;
 			}
 		}
+		if (this.enable){
+			if (this.beforeFlameEnable == false){
+				this.Music.musicStart(3);
+				this.beforeFlameEnable = true;
+			}
+		}
+		this.beforeFlameEnable = this.enable;
 	}
 
 	delete() {
@@ -37,19 +52,21 @@ export class EnemiesShark extends EnemiesBase {
 		this.dieSprite.kill();
 
 		this.EnemiesManager.deleteEnemy(this.EnemiesManager.enemies.indexOf(this));
-		this.game.state.start('GameOverScene', true, false, { isClear: true});
+		this.game.state.start('GameOverScene', true, false, { isClear: true });
 	}
 
 	addDamage() {
 		this.life--;
 		this.gameUi.setSharkLifeImage(this.life);
 		this.damageTime = new Date().getTime() + 200;
+		this.Music.SE = 3;
 		return true;
 	}
 
 	dieAnimation() {
 		if (this.dieSprite == null) {
 			this.dieSprite = this.game.add.sprite(this.sprite.x, this.sprite.y, "enemyCEnd");
+			this.SoundSystem.SE = 4;
 		}
 		this.dieTime++;
 		this.sprite.y += this.dieTime / 36;

@@ -1,16 +1,19 @@
-import { Game } from "phaser-ce";
+import { Game, SoundManager } from "phaser-ce";
 import { PlayerClass } from "./PlayerClass";
 import { EnemiesManager } from "./EnemiesManager";
+import { SoundSystem } from "../soundManager";
+
 export default class EnemiesBase {
-	public enable: Boolean = false;
+	public enable: boolean = false;
 	public sprite: Phaser.Sprite;
 	public life: number;
 	public damageTime: number = 0;
 	game: Game;
 	player: PlayerClass;
 	EnemiesManager: EnemiesManager;
+	SoundSystem: SoundSystem;
 
-	constructor(game: Game, player: PlayerClass, EM: EnemiesManager, spriteName: string, posX: number, posY: number, life: number) {
+	constructor(game: Game, player: PlayerClass, EM: EnemiesManager, spriteName: string, posX: number, posY: number, life: number, SoundSystem: SoundSystem) {
 		this.game = game;
 		this.player = player;
 		this.sprite = this.game.add.sprite(posX, posY, spriteName);
@@ -21,6 +24,7 @@ export default class EnemiesBase {
 		this.life = life;
 		this.enable = false;
 		this.EnemiesManager = EM;
+		this.SoundSystem = SoundSystem;
 	}
 
 	update() {
@@ -30,7 +34,7 @@ export default class EnemiesBase {
 	baseUpdate() {//todo:base
 		this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
 		if (this.game.camera.x > this.sprite.x) {
-			this.addDamage();
+			this.delete();
 			//this.player.changeAnimation("miss");
 		}
 		if (this.damageTime != 0) {
@@ -52,6 +56,8 @@ export default class EnemiesBase {
 			this.delete();
 		}
 		this.damageTime = new Date().getTime() + 200;
+		this.SoundSystem.SE = 3;
+
 		return true;
 	}
 

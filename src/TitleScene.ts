@@ -1,32 +1,30 @@
 import TimesteppedScene from "./base/TimesteppedScene";
 import PhaserTextStyle = Phaser.PhaserTextStyle;
-import { Sound } from "phaser-ce";
 import { ScoreManager, ScoreReset } from "./ScoreManager";
-
+import { SoundSystem } from "./soundManager";
 export default class TitleScene extends TimesteppedScene {
 	/**
 	 * Load sprites and various assets here.
 	 */
 
 	private scoreText: Phaser.Text;
+	private Music: SoundSystem;
 
 	preload() {
 		this.game.load.spritesheet('startButton', 'assets/startButton.png', 200, 40);
 		this.game.load.spritesheet('startBg', 'assets/background.png', 768, 432);
 
 		//game.load.audio('boden', ['assets/audio/bodenstaendig_2000_in_rock_4bit.mp3', 'assets/audio/bodenstaendig_2000_in_rock_4bit.ogg']);
-		this.game.load.audio("TitleMp3", ['assets/music/title.mp3']);
 
 		this.game.load.spritesheet('scoreResetButton', 'assets/scoreResetButton.png', 80, 16);
+		//music
+		this.Music = new SoundSystem(this.game);
+		this.Music.preload();
 	}
-	music: Sound;
 	/**
 	 * Ran once at initialization.
 	 */
 	create() {
-		//すべての音を止める。buttonOnClick()のものを移動。
-		this.game.sound.stopAll();
-
 		this.add.image(0, 0, "startBg");
 
 		const button = this.game.add.button(this.game.width / 2, 300, 'startButton', this.buttonOnClick, this, 2, 1, 0);
@@ -39,10 +37,11 @@ export default class TitleScene extends TimesteppedScene {
 
 		this.game.canvas.addEventListener('mousedown', onMouseDown);
 
-		this.music = this.game.sound.play('TitleMp3');
-
 		//score表示
 		this.putHighScore();
+
+		//music
+		this.Music.musicStart(1);
 	}
 
 	/**
@@ -53,6 +52,8 @@ export default class TitleScene extends TimesteppedScene {
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER) || this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 			this.buttonOnClick();
 		}
+
+		this.Music.update();
 	}
 
 	/**

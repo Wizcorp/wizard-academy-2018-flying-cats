@@ -18,11 +18,13 @@ export class EnemiesManager {
 	private player: PlayerClass;
 	private gameScene: GameScene;
 	private gameUi: GameUi;
+	private soundManager: any;
 
-	constructor(game: Game, player: PlayerClass, GS: GameScene) {
+	constructor(game: Game, player: PlayerClass, GS: GameScene, soundManager: any) {
 		this.player = player;
 		this.game = game;
 		this.gameScene = GS;
+		this.soundManager = soundManager;
 	}
 
 	init() {
@@ -94,25 +96,25 @@ export class EnemiesManager {
 	addEnemy(mode: number = 0, x: number, y: number, sx: number = 0, sy: number = 0) {
 		switch (mode) {
 			default:
-				this.enemies.push(new EnemiesCan(this.game, this.player, this, x, y));
+				this.enemies.push(new EnemiesCan(this.game, this.player, this, x, y, this.soundManager));
 				break;
 			case 1:
-				this.enemies.push(new EnemiesPudding(this.game, this.player, this, x, y));
+				this.enemies.push(new EnemiesPudding(this.game, this.player, this, x, y, this.soundManager));
 				break;
 			case 2:
-				this.enemies.push(new EnemiesOmurise(this.game, this.player, this, x, y));
+				this.enemies.push(new EnemiesOmurise(this.game, this.player, this, x, y, this.soundManager));
 				break;
 			case 3:
-				this.enemies.push(new EnemiesEbihurai(this.game, this.player, this, x, y));
+				this.enemies.push(new EnemiesEbihurai(this.game, this.player, this, x, y, this.soundManager));
 				break;
 			case 4:
-				this.enemies.push(new EnemiesShark(this.game, this.player, this, x, y, this.gameUi));
+				this.enemies.push(new EnemiesShark(this.game, this.player, this, x, y, this.gameUi, this.soundManager));
 				break;
 			case 5://shark専用缶、移動する。
-				this.enemies.push(new EnemiesMoveCan(this.game, this.player, this, x, y, sx, sy));
+				this.enemies.push(new EnemiesMoveCan(this.game, this.player, this, x, y, sx, sy, this.soundManager));
 				break;
 			case 6://アイテム出現用キー
-				this.enemies.push(new EnemiesItem(this.game, this.player, this, x, y, this.gameScene));
+				this.enemies.push(new EnemiesItem(this.game, this.player, this, x, y, this.gameScene, this.soundManager));
 				break;
 		}
 	}

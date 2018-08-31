@@ -6,7 +6,7 @@ import Bullet from "./GameObject/bullet"
 import GameUi from "./GameObject/GameUi"
 import EffectObjectManager from "./GameObject/EffectObjectManager"
 import { EffectObjectType } from "./base/Enum";
-
+import { SoundSystem } from "./soundManager";
 export default class GameScene extends TimesteppedScene {
 
 	private gameUi: GameUi;
@@ -25,6 +25,8 @@ export default class GameScene extends TimesteppedScene {
 	private bulletMode: number = 0;
 	private bulletRate: number = 200;
 
+	private music: SoundSystem;
+
 	init() {
 		this.lastShotTime = 0;
 
@@ -35,7 +37,8 @@ export default class GameScene extends TimesteppedScene {
 
 		this.effectObjectManager = new EffectObjectManager(this.game);
 
-		this.enemiesManager = new EnemiesManager(this.game, this.playerObject, this);
+		this.music = new SoundSystem(this.game);
+		this.enemiesManager = new EnemiesManager(this.game, this.playerObject, this, this.music);
 		this.enemiesManager.init();//敵
 	}
 
@@ -64,6 +67,8 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('mapGauge', 'assets/timeIcon.png');
 
 		this.game.load.spritesheet('playerSprite', 'assets/catPlayer.png', 35, 40);
+		
+		this.music.preload();
 	}
 
 	create() {
@@ -71,11 +76,13 @@ export default class GameScene extends TimesteppedScene {
 
 		this.gameUi = new GameUi(this.game);
 		this.enemiesManager.create(this.gameUi);//敵
-		this.playerObject.createPlayer(this.gameUi);
+		this.playerObject.createPlayer(this.gameUi, this.music);
 
 		this.game.physics.arcade.enable([this.playerObject.mySprite]);//todo:Player.tsに移す
 
 		this.bulletRate = 200;
+		//music
+		this.music.musicStart(2);
 	}
 
 	fixedUpdate(dt: number) {
@@ -93,6 +100,8 @@ export default class GameScene extends TimesteppedScene {
 			const bullet = new Bullet(this.game, this.playerObject.mySprite.x, this.playerObject.mySprite.y, "bullet", this.effectObjectManager);
 			this.bullets.push(bullet);
 			this.lastShotTime = new Date().getTime();
+
+			this.music.SE = 1;
 
 			//testでエフェクトを発生
 			//this.effectObjectManager.addEffect(Math.random() * this.game.width,Math.random() * this.game.height,EffectObjectType.hitEffect);
