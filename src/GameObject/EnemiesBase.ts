@@ -28,6 +28,9 @@ export default class EnemiesBase {
 	}
 
 	update() {
+	}
+
+	baseUpdate() {//todo:base
 		//各enemy中のupdateがあればそちらを読む。例：EnemiesCan.update()
 		this.game.physics.arcade.overlap(this.player.mySprite, this.sprite, this.player.changeLife.bind(this.player), null, this);
 		if (this.game.camera.x > this.sprite.x) {
@@ -41,9 +44,6 @@ export default class EnemiesBase {
 				this.sprite.alpha = 0.7;
 			}
 		}
-	}
-
-	baseUpdate() {//todo:base
 	}
 
 	fixedUpdate(dt: number) {
