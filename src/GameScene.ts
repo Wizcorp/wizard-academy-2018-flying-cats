@@ -4,7 +4,6 @@ import { PlayerClass } from "./GameObject/PlayerClass";
 import { BgClass } from "./GameObject/BgClass";
 import Bullet from "./GameObject/bullet"
 import GameUi from "./GameObject/GameUi"
-import EffectObject from "./GameObject/EffectObject"
 import EffectObjectManager from "./GameObject/EffectObjectManager"
 import { EffectObjectType } from "./base/Enum";
 
@@ -117,10 +116,6 @@ export default class GameScene extends TimesteppedScene {
 				bullet.destroy();
 			}
 		}
-	}
-
-	buttonOnClick() {
-		this.game.state.start('GameOverScene');
 	}
 
 	set bulletModeNum(mode: number) {

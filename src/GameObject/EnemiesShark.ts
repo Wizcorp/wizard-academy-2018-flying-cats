@@ -34,7 +34,7 @@ export class EnemiesShark extends EnemiesBase {
 	delete() {
 		this.sprite.kill();
 		this.dieSprite.kill();
-		this.game.state.start('GameOverScene');
+		this.game.state.start('GameOverScene', true, false, { isClear: true});
 	}
 
 	addDamage() {

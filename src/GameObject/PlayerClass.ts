@@ -161,7 +161,7 @@ export class PlayerClass {
 			this.gameUi.setLifeImage(this.life);
 
 			if (this.life < 1) {
-				this.game.state.start('GameOverScene');
+				this.game.state.start('GameOverScene', true, false, { isClear: false});
 			}
 			this.changeAnimation("die");
 		} else {

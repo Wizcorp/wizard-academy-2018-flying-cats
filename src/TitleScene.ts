@@ -71,7 +71,7 @@ export default class TitleScene extends TimesteppedScene {
 	putHighScore() {
 		//ScoreReset();クッキー削除
 		let score = ScoreManager();
-		if (score != 0){
+		if (score != 0) {
 			const myStyle = { font: "16px Arial", fill: "#FFFFFF", align: "center" };
 			this.scoreText = new Phaser.Text(this.game, this.game.width - 230, this.game.height - 20, "score:0", myStyle);
 			this.scoreText.fixedToCamera = true;
