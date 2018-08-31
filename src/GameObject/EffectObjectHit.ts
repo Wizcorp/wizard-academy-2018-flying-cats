@@ -18,8 +18,8 @@ export default class EffectObjectHit extends EffectObject {
 		this.mainSprite.smoothed = false;
 
 		this.mainSprite.anchor.set(0, 0.5);
-		//		this.mainSprite.scale.set(0.2, 0.2);
-				this.mainSprite.alpha = 0.8;
+		//this.mainSprite.scale.set(0.2, 0.2);
+		this.mainSprite.alpha = 0.8;
 
 
 		const animationSpeed: number = 18;
