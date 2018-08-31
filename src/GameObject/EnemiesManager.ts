@@ -9,7 +9,7 @@ import { EnemiesShark } from "./EnemiesShark";
 import { EnemiesMoveCan } from "./EnemiesMoveCan";
 import { EnemiesItem } from "./EnemiesItem";
 import { PlayerClass } from "./PlayerClass";
-import GameScene  from "../GameScene";
+import GameScene from "../GameScene";
 import ITiledObject from "./ITiledObject";
 import GameUi from "./GameUi"
 export class EnemiesManager {
@@ -59,11 +59,17 @@ export class EnemiesManager {
 				case "shark":
 					mode = 4;
 					break
+				case "moveCan":
+					mode = 5;
+					break
+				case "item":
+					mode = 6;
+					break
 			}
 			this.addEnemy(mode, object.x, object.y);
 		}
-		//add item
-		this.addEnemy(6,1000,this.game.height/2);
+		//add item一時　配置、マップ改良時消す。
+		this.addEnemy(6, 1000, this.game.height / 2);
 	}
 
 	GUUpdateTime: number = 0;
@@ -79,7 +85,7 @@ export class EnemiesManager {
 			}
 		}
 		this.GUUpdateTime--;
-		if (this.GUUpdateTime < 0){
+		if (this.GUUpdateTime < 0) {
 			this.gameUi.setMapGaugeImage(this.enemies.length);
 			this.GUUpdateTime = this.GUUpdateTimeSet;
 		}
@@ -113,5 +119,9 @@ export class EnemiesManager {
 	//タイルマップの中身を読み込むための関数
 	getObjectLayer(map: Phaser.Tilemap, layerName: string): ITiledObject[] {
 		return (map.objects as any)[layerName] as ITiledObject[];
+	}
+
+	deleteEnemy(id:number){
+		this.enemies.splice(id, 1);
 	}
 }

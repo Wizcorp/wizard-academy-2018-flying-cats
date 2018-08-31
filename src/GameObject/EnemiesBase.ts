@@ -33,11 +33,11 @@ export default class EnemiesBase {
 			this.addDamage();
 			//this.player.changeAnimation("miss");
 		}
-		if(this.damageTime != 0){
-			if( this.damageTime<new Date().getTime()){
+		if (this.damageTime != 0) {
+			if (this.damageTime < new Date().getTime()) {
 				this.sprite.alpha = 1;
-			}else{
-				this.sprite.alpha = 0.5;
+			} else {
+				this.sprite.alpha = 0.7;
 			}
 		}
 	}
@@ -59,11 +59,12 @@ export default class EnemiesBase {
 		this.sprite.kill();
 		//処理軽減のために倒した敵を配列から削除。
 		//自分の番号がわからないのでライフからすべて検索。
-		this.life = 0;
-		for (let i = 0; i < this.EnemiesManager.enemies.length - 1; i++) {
-			if (this.EnemiesManager.enemies[i].life <= 0) {
-				this.EnemiesManager.enemies.splice(i, 1);
-			}
-		}
+		// this.life = 0;
+		// for (let i = 0; i < this.EnemiesManager.enemies.length - 1; i++) {
+		// 	if (this.EnemiesManager.enemies[i].life <= 0) {
+		// 		this.EnemiesManager.enemies.splice(i, 1);
+		// 	}
+		// }
+		this.EnemiesManager.deleteEnemy(this.EnemiesManager.enemies.indexOf(this))
 	}
 }
