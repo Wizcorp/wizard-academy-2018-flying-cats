@@ -16,6 +16,9 @@ export class SoundSystem {
         this.game.load.audio("title", ["assets/music/title.mp3"]);
         this.game.load.audio("Play", ["assets/music/playbgm.mp3"]);
         this.game.load.audio("Boss", ["assets/music/BOSS.mp3"]);
+        this.game.load.audio("gameClear", ["assets/SE/BOSS.mp3"]);
+        this.game.load.audio("gameOver", ["assets/SE/gameOver.mp3"]);
+        this.game.load.audio("Boss", ["assets/music/BOSS.mp3"]);
         this.game.load.audio("playerAttack", ["assets/SE/playerAttack.mp3"]);
         this.game.load.audio("playerAttacked", ["assets/SE/playerAttacked.mp3"]);
         this.game.load.audio("enemyDie", ["assets/SE/enemyDie.mp3"]);
@@ -40,6 +43,12 @@ export class SoundSystem {
             case 3:
                 this.music = this.game.sound.play("Boss");
                 this.music.loopFull();
+                break;
+            case 4:
+                this.music = this.game.sound.play("gameClear");
+                break;
+            case 5:
+                this.music = this.game.sound.play("gameOver");
                 break;
         }
     }
