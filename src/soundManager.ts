@@ -32,7 +32,7 @@ export class SoundSystem {
     musicStart(num: number) {
         this.game.sound.stopAll();
         switch (num) {
-            default:
+            case 1:
                 this.music = this.game.sound.play("title");
                 this.music.loopFull();
                 break;
@@ -50,6 +50,8 @@ export class SoundSystem {
             case 5:
                 this.music = this.game.sound.play("gameOver");
                 break;
+            default:
+                break;
         }
     }
 
@@ -61,15 +63,15 @@ export class SoundSystem {
                 break;
             case 2:
                 this.SEB = this.game.sound.play("playerAttacked");
-                this.SEB.volume = 3;
+                this.SEB.volume = 1.6;
                 break;
             case 3:
                 this.SEC = this.game.sound.play("enemyDie");
-                this.SEC.volume = 2;
                 break;
             case 4:
                 this.SED = this.game.sound.play("bossDie");
-                this.SED.volume = 100;
+                this.music.loopFull();
+                this.SED.volume = 60;
                 break;
         }
     }

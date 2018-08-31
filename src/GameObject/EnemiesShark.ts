@@ -19,13 +19,12 @@ export class EnemiesShark extends EnemiesBase {
 	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gu: GameUi, soundSystem: SoundSystem) {
 		super(game, player, EM, "enemyC", posX, posY, 180, soundSystem);
 		this.gameUi = gu;
-		//this.game.camera.x = 8000;
 		//music
 		this.Music = soundSystem;
 		this.Music.musicStart(3);//startに移動
 	}
 
-	baseUpdate(){
+	baseUpdate() {
 		if (this.life <= 0) {
 			this.dieAnimation();
 		} else {
@@ -38,8 +37,8 @@ export class EnemiesShark extends EnemiesBase {
 				this.sprite.alpha = 0.7;
 			}
 		}
-		if (this.enable){
-			if (this.beforeFlameEnable == false){
+		if (this.enable) {
+			if (this.beforeFlameEnable == false) {
 				this.Music.musicStart(3);
 				this.beforeFlameEnable = true;
 			}
@@ -73,7 +72,7 @@ export class EnemiesShark extends EnemiesBase {
 		}
 		this.dieTime++;
 		this.sprite.y += this.dieTime / 36;
-		this.sprite.x -= this.dieTime / 100;
+		this.sprite.x -= 1;
 		this.dieSprite.x = this.sprite.x - 100;
 		this.dieSprite.y = this.sprite.y - 75;
 		if (this.sprite.y > this.game.height + 300) {
@@ -95,9 +94,12 @@ export class EnemiesShark extends EnemiesBase {
 			case 0:
 				if (this.aTime < 0) {
 					this.aTime = this.mTime;
-					this.EnemiesManager.addEnemy(3, this.sprite.x, this.sprite.y + 160);
-					this.EnemiesManager.addEnemy(3, this.sprite.x, this.sprite.y - 160);
-					this.EnemiesManager.addEnemy(3, this.sprite.x, this.sprite.y);
+					this.EnemiesManager.addEnemy(3, this.sprite.x + 50, this.sprite.y + 160);
+					this.EnemiesManager.addEnemy(3, this.sprite.x + 50, this.sprite.y - 160);
+					this.EnemiesManager.addEnemy(3, this.sprite.x, this.sprite.y + 250);
+					this.EnemiesManager.addEnemy(3, this.sprite.x, this.sprite.y - 250);
+					this.EnemiesManager.addEnemy(3, this.sprite.x - 60, this.sprite.y);
+					this.SoundSystem.SE = 1;
 				}
 				this.sprite.y += this.fn_MMN(this.game.height / 2 - this.sprite.y, -2);
 				break;
@@ -105,6 +107,7 @@ export class EnemiesShark extends EnemiesBase {
 				if (this.aTime < 0) {
 					this.aTime = 20;
 					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -5, 0);
+					this.SoundSystem.SE = 1;
 				}
 				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2);
 				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
@@ -125,7 +128,8 @@ export class EnemiesShark extends EnemiesBase {
 				this.mode++;
 				break;
 			case 6:
-				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2);
+				//this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -2);
+				this.sprite.y -= 2;
 				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
 				if (this.aTime < 0) {
 					this.aTime = 60;
@@ -134,18 +138,25 @@ export class EnemiesShark extends EnemiesBase {
 					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -3, 0);
 					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -2.4, 0.5);
 					this.EnemiesManager.addEnemy(5, this.sprite.x, this.sprite.y, -2, 1);
+					this.SoundSystem.SE = 1;
 				}
+				break;
+			case 7:
+				this.sprite.y += this.fn_MMN(this.player.mySprite.y - this.sprite.y, -1);
+				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);
 				break;
 			case 8:
 				if (this.aTime < 0) {
-					this.aTime = 20;
+					this.aTime = 1;
 					const h = this.game.height;
-					let i = this.modeTime * 1;
+					let i = this.modeTime * 2;
 					while (i > h) {
 						i -= h;
 					}
 					i -= h / 2;
-					this.EnemiesManager.addEnemy(3, this.sprite.x + Math.sqrt(Math.pow(h / 2, 2) - Math.pow(i, 2)) / 3, this.sprite.y + i / 3);
+					this.modeTime -= 11;
+					this.EnemiesManager.addEnemy(3, this.sprite.x - Math.sqrt(Math.pow(h / 2, 2) - Math.pow(i, 2))/2, this.sprite.y + i / 1);
+					this.SoundSystem.SE = 1;
 				}
 				this.sprite.y += this.fn_MMN(this.game.height / 2 - this.sprite.y, -2);
 				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);

@@ -71,7 +71,7 @@ export class EnemiesManager {
 			this.addEnemy(mode, object.x, object.y);
 		}
 		//add item一時　配置、マップ改良時消す。
-		this.addEnemy(6, 1000, this.game.height / 2);
+		this.addEnemy(6, 1300, this.game.height / 2 + 100);
 	}
 
 	GUUpdateTime: number = 0;
