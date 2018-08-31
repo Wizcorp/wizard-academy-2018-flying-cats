@@ -16,7 +16,7 @@ export class SoundSystem {
         this.game.load.audio("title", ["assets/music/title.mp3"]);
         this.game.load.audio("Play", ["assets/music/playbgm.mp3"]);
         this.game.load.audio("Boss", ["assets/music/BOSS.mp3"]);
-        this.game.load.audio("gameClear", ["assets/SE/BOSS.mp3"]);
+        this.game.load.audio("gameClear", ["assets/SE/gameClear.mp3"]);
         this.game.load.audio("gameOver", ["assets/SE/gameOver.mp3"]);
         this.game.load.audio("Boss", ["assets/music/BOSS.mp3"]);
         this.game.load.audio("playerAttack", ["assets/SE/playerAttack.mp3"]);
