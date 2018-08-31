@@ -58,7 +58,7 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('ItemA', 'assets/item_sunGlass.png');
 
 		this.game.load.image('effectHit', 'assets/lingSoft.png');
-		this.game.load.image('bomb', 'assets/bomb.png');
+		this.game.load.spritesheet('bomb', 'assets/bomb.png', 50, 50);
 
 		this.game.load.image('bullet', 'assets/fork.png');
 		this.enemiesManager.preload();//敵
@@ -67,7 +67,7 @@ export default class GameScene extends TimesteppedScene {
 		this.game.load.image('mapGauge', 'assets/timeIcon.png');
 
 		this.game.load.spritesheet('playerSprite', 'assets/catPlayer.png', 35, 40);
-		
+
 		this.music.preload();
 	}
 
