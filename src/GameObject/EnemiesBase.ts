@@ -57,7 +57,6 @@ export default class EnemiesBase {
 
 	delete() {
 		this.sprite.kill();
-		console.log("base delete" + this.EnemiesManager.enemies.indexOf(this));
 		this.EnemiesManager.deleteEnemy(this.EnemiesManager.enemies.indexOf(this));
 	}
 }

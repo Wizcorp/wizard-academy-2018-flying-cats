@@ -5,15 +5,16 @@ import GameUi from "./GameUi"
 export class EnemiesShark extends EnemiesBase {
 
 	aTime: number = 0;
-	mTime: number = 280;
+	mTime: number = 80;
 	mode: number = 1;
-	modeTime: number = 0;
+	modeTime: number = 120;//表示されてからの待機時間
 	dieTime: number = 0;
 	dieSprite: Phaser.Sprite;
 	private gameUi: GameUi;
 	constructor(game: Game, player: PlayerClass, EM: any, posX: number, posY: number, gu: GameUi) {
 		super(game, player, EM, "enemyC", posX, posY, 180);
 		this.gameUi = gu;
+		//this.game.camera.x = 8000;
 	}
 
 	update() {
@@ -34,6 +35,8 @@ export class EnemiesShark extends EnemiesBase {
 	delete() {
 		this.sprite.kill();
 		this.dieSprite.kill();
+
+		this.EnemiesManager.deleteEnemy(this.EnemiesManager.enemies.indexOf(this));
 		this.game.state.start('GameOverScene', true, false, { isClear: true});
 	}
 
@@ -62,7 +65,7 @@ export class EnemiesShark extends EnemiesBase {
 		this.aTime--;
 		this.modeTime--;
 		if (this.modeTime < 0) {
-			this.modeTime = 350;
+			this.modeTime = 380;//モード切替速度
 			this.mode++;
 			if (this.mode > 11) {
 				this.mode = 0;
@@ -115,14 +118,14 @@ export class EnemiesShark extends EnemiesBase {
 				break;
 			case 8:
 				if (this.aTime < 0) {
-					this.aTime = 5;
+					this.aTime = 20;
 					const h = this.game.height;
-					let i = this.modeTime * 3;
+					let i = this.modeTime * 1;
 					while (i > h) {
 						i -= h;
 					}
 					i -= h / 2;
-					this.EnemiesManager.addEnemy(3, this.sprite.x - Math.sqrt(Math.pow(h, 2) - Math.pow(i, 2)) / 3, this.sprite.y + i);
+					this.EnemiesManager.addEnemy(3, this.sprite.x + Math.sqrt(Math.pow(h / 2, 2) - Math.pow(i, 2)) / 3, this.sprite.y + i / 3);
 				}
 				this.sprite.y += this.fn_MMN(this.game.height / 2 - this.sprite.y, -2);
 				this.sprite.x += this.fn_MMN(3, -1, this.game.camera.x - this.sprite.x + 700);

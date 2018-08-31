@@ -78,9 +78,9 @@ export class EnemiesManager {
 	public update(/*dt: number*/) {
 		for (let i = 0; i < this.enemies.length; i++) {
 			if (this.enemies[i].enable) {
-				this.enemies[i].baseUpdate();
 				this.enemies[i].update();
-			} else if (this.game.camera.x - this.enemies[i].sprite.x + this.game.width > 0) {
+				this.enemies[i].baseUpdate();
+			} else if (this.game.camera.x + this.game.width + 30 > this.enemies[i].sprite.x) {
 				this.enemies[i].enable = true;
 			}
 		}
@@ -121,7 +121,7 @@ export class EnemiesManager {
 		return (map.objects as any)[layerName] as ITiledObject[];
 	}
 
-	deleteEnemy(id:number){
+	deleteEnemy(id: number) {
 		this.enemies.splice(id, 1);
 	}
 }
