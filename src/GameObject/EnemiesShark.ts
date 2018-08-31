@@ -25,7 +25,7 @@ export class EnemiesShark extends EnemiesBase {
 		this.Music.musicStart(3);//startに移動
 	}
 
-	update() {
+	baseUpdate(){
 		if (this.life <= 0) {
 			this.dieAnimation();
 		} else {
@@ -45,6 +45,9 @@ export class EnemiesShark extends EnemiesBase {
 			}
 		}
 		this.beforeFlameEnable = this.enable;
+	}
+
+	update() {
 	}
 
 	delete() {
