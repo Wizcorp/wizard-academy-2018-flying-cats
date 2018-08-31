@@ -21,7 +21,6 @@ export default class EffectObjectHit extends EffectObject {
 		//this.mainSprite.scale.set(0.2, 0.2);
 		this.mainSprite.alpha = 0.8;
 
-
 		const animationSpeed: number = 18;
 		this.mainSprite.animations.add('normal', [0, 1, 2, 3, 4], animationSpeed, true);
 		this.mainSprite.animations.play('normal');

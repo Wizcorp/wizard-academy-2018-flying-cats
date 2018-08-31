@@ -3,16 +3,10 @@ import EffectObjectHit from "./EffectObjectHit";
 import { Game } from "phaser-ce";
 import { EffectObjectType } from "../base/Enum";
 
-//アチコチで使うのでここで宣言するのではなくした
-//enum EffectObjType {	hitEffect = 0,	itemGetEffect = 1,	deathEffect = 2}
-
 export default class EffectObjectManager {
 
 	public effectObjects: EffectObject[] = [];
 	private game: Game;
-
-	//メンバ変数でenumをつかう
-	private effectType: EffectObject;//実際は使ってないけど。
 
 	constructor(game: Game) {
 		this.game = game;
@@ -44,6 +38,5 @@ export default class EffectObjectManager {
 	destroy(index: number) {
 		this.effectObjects.splice(index, 1);
 	}
-
 }
 
