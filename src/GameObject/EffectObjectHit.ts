@@ -31,10 +31,17 @@ export default class EffectObjectHit extends EffectObject {
 		this.mainSprite.x += 3.5;
 		super.update();
 	}
-	destroyOeder() {
-		//配列を消しただけだとPhaserのオブジェクトは消えないので、自分のPhaserオブジェクトはすべて消すこと。
+
+	destroyEffectObjectOeder() {
 		// TODO Florian -- そういえば、基本は作ったオブジェックとに消える機能の責任も渡します。
-		this.mainSprite.destroy();
 		super.destroyOeder();
+	}
+
+	/**
+	 * 自分が管理するオブジェクト(SpriteやEmmiter)を消すための関数。マネージャーが呼ぶ。
+	 */
+	destoryMyObjects(){
+		this.mainSprite.destroy();
+		super.destoryMyObjects();//現時点では使っていないが継承元で編集されたときの事故を防ぐため記述。
 	}
 }

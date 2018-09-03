@@ -5,7 +5,9 @@ import { EffectObjectType } from "../base/Enum";
 
 export default class EffectObjectManager {
 
-	public effectObjects: EffectObject[] = [];
+	private effectObjects: EffectObject[] = [];//自分が管理する物を開示しない。自分で管理するためprivateにする）
+	//今後は外部に管理した結果を開示する関数やプロパティを作って拡張していく。
+
 	private game: Game;
 
 	constructor(game: Game) {
@@ -34,13 +36,8 @@ export default class EffectObjectManager {
 		}
 	}
 
-	//オブジェクトの参照が無くても番号で殺せるようにした
-	// TODO Florian -- Avoid using `destroy` as a name, since it's used in Phaser to mean "destroy this object" (not a child object)
-	// destroy(index: number) {
-	// 	this.effectObjects.splice(index, 1);
-	// }
-
 	destroyEffectObject(effect: EffectObject) {
+		effect.destoryMyObjects();
 		const index = this.effectObjects.indexOf(effect);
 		console.assert(index !== -1);
 		this.effectObjects.splice(index, 1);

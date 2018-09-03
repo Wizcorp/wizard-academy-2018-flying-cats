@@ -31,4 +31,8 @@ export default class EffectObject {
 		// TODO Florian -- As we talked before, I'd rather pass `this`.
 		this.effectObjectManager.destroyEffectObject(this);
 	}
+
+	destoryMyObjects(){
+
+	}	
 }
