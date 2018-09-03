@@ -10,7 +10,6 @@ export default class Bullet extends Phaser.Sprite {
 		this.game.add.existing(this);
 		this.moveSpeed = 10;
 		this.game.physics.arcade.enable(this);
-		this.effectObjectMnager = effectObjectMnager;
 	}
 
 	fixedUpdate() {
