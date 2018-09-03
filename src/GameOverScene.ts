@@ -18,7 +18,7 @@ export default class GameOverScene extends TimesteppedScene {
 	preload() {
 		this.game.load.spritesheet('touchButton', 'assets/touchTheScreenButton.png', 199, 38);
 		this.game.load.spritesheet('gameOverBg', 'assets/gameOverBackground.png', 768, 432);
-		this.game.load.spritesheet('gameClearBg', 'assets/clearimage.png', 768, 432);
+		this.game.load.spritesheet('gameClearBg', 'assets/clearImage.png', 768, 432);
 		this.music.preload();
 	}
 

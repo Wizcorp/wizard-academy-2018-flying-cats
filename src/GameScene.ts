@@ -45,7 +45,7 @@ export default class GameScene extends TimesteppedScene {
 	preload() {
 		this.game.load.image('background', 'assets/stageBackground.png');
 
-		this.game.load.tilemap('map', 'assets/json/mapTest001B.json', null, Phaser.Tilemap.TILED_JSON); // タイルマップのjsonファイル
+		this.game.load.tilemap('map', 'assets/json/maptest001B.json', null, Phaser.Tilemap.TILED_JSON); // タイルマップのjsonファイル
 		this.game.load.image('tiles', 'assets/exptest01.png');  // タイルセット画像ファイル
 
 		this.game.load.image('enemyA', 'assets/nyan.png');//敵画像
