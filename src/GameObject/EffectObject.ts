@@ -1,6 +1,7 @@
 import { Game } from "phaser-ce";
 import EffectObjectManager from "./EffectObjectManager"
 
+// Florian -- Good use of inheritance!
 export default class EffectObject {
 
 	protected game: Game;
@@ -27,6 +28,11 @@ export default class EffectObject {
 	}
 
 	destroyOeder() {
-		this.effectObjectManager.destroy(this.effectObjectManager.effectObjects.indexOf(this));
+		// TODO Florian -- As we talked before, I'd rather pass `this`.
+		this.effectObjectManager.destroyEffectObject(this);
 	}
+
+	destoryMyObjects(){
+
+	}	
 }

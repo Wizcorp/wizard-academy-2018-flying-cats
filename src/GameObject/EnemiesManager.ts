@@ -35,6 +35,7 @@ export class EnemiesManager {
 
 	}
 
+	// TODO Florian -- perfect
 	create(gameUi: GameUi) {
 		this.enemies = [];
 		this.gameUi = gameUi;//shark life

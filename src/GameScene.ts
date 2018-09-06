@@ -89,8 +89,9 @@ export default class GameScene extends TimesteppedScene {
 
 		this.game.camera.x += this.scrollSpeed;
 
+		// TODO Florian -- good structure, but usually if you get a dt, you should pass it down (it's there for a reason, try on a slow machine)
 		this.tilesetObject.update();
-		this.playerObject.update();
+		this.playerObject.update(dt);
 		this.enemiesManager.update();//敵の更新
 		this.effectObjectManager.update();
 
@@ -102,14 +103,11 @@ export default class GameScene extends TimesteppedScene {
 			this.lastShotTime = new Date().getTime();
 
 			this.music.SE = 1;
-
-			//testでエフェクトを発生
-			//this.effectObjectManager.addEffect(Math.random() * this.game.width,Math.random() * this.game.height,EffectObjectType.hitEffect);
 		}
 
 		//bulletの処理と当たり判定
 		for (const bullet of this.bullets) {
-			bullet.fixedUpdate();
+			bullet.fixedUpdate(dt);
 
 			for (const enemy of this.enemiesManager.enemies) {
 				if (this.game.physics.arcade.overlap(bullet, enemy.sprite) && enemy.enable) {

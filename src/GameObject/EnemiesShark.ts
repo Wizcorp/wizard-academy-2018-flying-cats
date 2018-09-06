@@ -21,6 +21,7 @@ export class EnemiesShark extends EnemiesBase {
 		this.gameUi = gu;
 		//music
 		this.Music = soundSystem;
+		// TODO Florian -- no need here! (executed upon startup)
 		this.Music.musicStart(3);//startに移動
 	}
 
@@ -60,6 +61,7 @@ export class EnemiesShark extends EnemiesBase {
 	}
 
 	addDamage() {
+		// TODO Florian -- note that with inheritance, you may also call the parent addDamage method (in EnemiesBase). Use super.addDamage().
 		this.life--;
 		this.gameUi.setSharkLifeImage(this.life);
 		this.damageTime = new Date().getTime() + 200;
@@ -92,6 +94,7 @@ export class EnemiesShark extends EnemiesBase {
 				this.mode = 0;
 			}
 		}
+		// TODO Florian -- good, but you may use constants instead of numbers so that your states are easier to understand (see enum)
 		switch (this.mode) {
 			case 0:
 				if (this.aTime < 0) {

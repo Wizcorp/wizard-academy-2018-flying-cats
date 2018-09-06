@@ -1,3 +1,5 @@
+// TODO Florian -- avoid naming functions like that (a manager is usually a class, and when seeing ScoreManager, we
+// don't understand that you are returning the high score).
 export function ScoreManager(score: number = 0): number {
     if (document.cookie != null) {
         let data = document.cookie.split(";");

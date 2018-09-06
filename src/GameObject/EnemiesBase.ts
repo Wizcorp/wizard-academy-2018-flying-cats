@@ -27,6 +27,8 @@ export default class EnemiesBase {
 		this.SoundSystem = SoundSystem;
 	}
 
+	// TODO Florian -- nice. You want to create an abstract class, and an abstract method here.
+	// https://medium.com/@pagalvin/looking-at-abstract-classes-and-methods-in-typescript-9769de98f65b
 	update() {
 	}
 
@@ -63,6 +65,7 @@ export default class EnemiesBase {
 
 	delete() {
 		this.sprite.kill();
+		// TODO Florian -- same as told previously in EffectObject. Else, very nice use of inheritance and OOP!
 		this.EnemiesManager.deleteEnemy(this.EnemiesManager.enemies.indexOf(this));
 	}
 }

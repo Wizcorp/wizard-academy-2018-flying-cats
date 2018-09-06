@@ -42,6 +42,7 @@ export class PlayerClass {
 	}
 
 	get height(): number {
+		// TODO Florian -- んん？方形だと良いけど (笑)
 		return this.mySprite.width;
 	}
 
@@ -88,8 +89,8 @@ export class PlayerClass {
 
 	}
 
-	update() {
-		this.playerOperation();
+	update(dt: number) {
+		this.playerOperation(dt);
 		this.limitedPlayerMoveArea();
 
 		//キャラ座標とカメラ座標からキャラの描画先を決める
@@ -103,25 +104,25 @@ export class PlayerClass {
  * プレイヤーの移動操作
  * キーの入力による座標移動や、攻撃など遊び手がplayerに対して介入する物を書く
  */
-	playerOperation() {
-		const moveSpeed: number = 7;
+	playerOperation(dt: number) {
+		const moveSpeed: number = 180;
 
 		if (this.cursors.left.isDown || this.keyA.isDown) {
 			//console.log("左に移動");
-			this.playerPosition.x -= moveSpeed;
+			this.playerPosition.x -= moveSpeed * dt;
 		}
 		else if (this.cursors.right.isDown || this.keyD.isDown) {
 			//console.log("右に移動");
-			this.playerPosition.x += moveSpeed;
+			this.playerPosition.x += moveSpeed * dt;
 		}
 
 		if (this.cursors.up.isDown || this.keyW.isDown) {
 			//console.log("上に移動");
-			this.playerPosition.y -= moveSpeed;
+			this.playerPosition.y -= moveSpeed * dt;
 		}
 		else if (this.cursors.down.isDown || this.keyS.isDown) {
 			//console.log("下に移動");
-			this.playerPosition.y += moveSpeed;
+			this.playerPosition.y += moveSpeed * dt;
 		}
 	}
 
@@ -164,7 +165,7 @@ export class PlayerClass {
 			this.gameUi.setLifeImage(this.life);
 
 			if (this.life < 1) {
-				this.game.state.start('GameOverScene', true, false, { isClear: false});
+				this.game.state.start('GameOverScene', true, false, { isClear: false });
 			}
 			this.changeAnimation("die");
 			this.music.SE = 2;
